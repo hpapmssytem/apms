@@ -24,7 +24,16 @@ class ApplicationFormRequest extends Request
     public function rules()
     {
         return [
-            'fname' => 'require'
+            'fname'         => 'required',
+            'mname'         => 'string',
+            'lname'         => 'required',
+            'age'           => 'required',
+            'birthdate'     => 'required',
+            'date_applied'  => 'required',
+            'address'       => 'required',
+            'contact_num'   => 'required',
+            'email_add'     => 'required|email',
+            'position_id'   => 'required'
         ];
     }
 }

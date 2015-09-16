@@ -9,6 +9,11 @@ use apms\Http\Controllers\Controller;
 
 use apms\Http\Requests\ApplicationFormRequest;
 
+use apms\Applicant;
+use apms\Position;
+use apms\EducXp;
+use apms\WorkXp;
+
 class FormController extends Controller
 {
     /**
@@ -18,7 +23,8 @@ class FormController extends Controller
      */
     public function index()
     {
-        return view('forms.index');
+        $positions = Position::select('id', 'name')->get();
+        return view('forms.index')->with('positions', $positions);
     }
 
     /**
@@ -39,6 +45,22 @@ class FormController extends Controller
      */
     public function store(ApplicationFormRequest $request)
     {
+        $applicant = new Applicant(array(
+            'fname' => $request->get('fname'),
+            'mname' => $request->get('mname'),
+            'lname' => $request->get('lname'),
+            'age' => $request->get('age'),
+            'birthdate' => $request->get('birthdate'),
+            'date_applied' => $request->get('date_applied'),
+            'address' => $request->get('address'),
+            'contact_num' => $request->get('contact_num'),
+            'email_add' => $request->get('email_add'),
+            'position_id' => $request->get('position_id'),
+            'status' => 0
+        ));
+
+        $applicant->save();
+
         return \Redirect::route('form.index')
             ->with('message', 'Your application has been created!');
     }

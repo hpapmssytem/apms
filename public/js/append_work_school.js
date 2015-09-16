@@ -1,8 +1,10 @@
 $(document).ready( function() {
 
     //add another school attainment
-    $("#AppendedSchool").click(function() {
+    $("#AppendedSchool").click(function($e) {
         //get educational group attainment form
+        $e.preventDefault();
+        
         var x = $('#educGroup').wrap('<p/>').parent();
 
         //add new attainment

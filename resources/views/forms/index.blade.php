@@ -52,6 +52,16 @@
     <section id="contact">
         <div class="container">
             <div class="row">
+                @if(Session::has('message'))
+                    <div class="alert alert-info">
+                        {{ Session::get('message') }}
+                    </div>
+                @endif
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
                 <div class="col-lg-12 profile">
 				    <h3>PROFILE</h3>
 				</div>
@@ -60,45 +70,50 @@
                 <div class="col-lg-12">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    {!! Form::open(array('route' => 'form.store', 'class' => 'form')) !!}
-
+                    <form method='post' action='{{ URL::route("form.store") }}'>
+                        <?php echo Form::token(); ?>
                     <!--PROFILE-->		                       
     					<div class="row">
                             <div class="form-group col-md-6 floating-label-form-group controls">
     							<h5>Applying Position</h5>
-    							<div class="btn-group">
-    								<button type="button" id="applyingPosition" class="btn btn-default dropdown-toggle" data-toggle="dropdown" required data-validation-required-message="Please enter Applied Position">
-                                        <span data-bind="label">Select One</span>&nbsp;<span class="caret"></span>
-    								</button>
-    								<ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">IOS Developer</a></li>
-                                        <li><a href="#">PHP Developer</a></li>
-                                        <li><a href="#">Content Writer</a></li>
-    								</ul>	 
-    							</div>
+    							<div class="form-group">
+                                    <select name="position_id">
+                                        @foreach($positions as $position)
+                                            <option value="{{ $position->id }}">
+                                                {{ $position->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
     							<p class="help-block text-danger"></p>
                                 <div class="control-group">
         							<h5>First Name</h5>
-                                    <input type="text" class="form-control" id="Fname">
+                                    {!! Form::text('fname', null, array('required', 'class'=>'form-control',
+                                        'placeholder'=>'First name')) !!}
                                     <p class="help-block text-danger"></p>
                                 </div>		
                                 <div class="control-group"> 
                                     <h5>Middle Name</h5>
-                                    <input type="text" class="form-control" id="Mname">
+                                    {!! Form::text('mname', null, array('class'=>'form-control',
+                                        'placeholder'=>'middle name')) !!}
                                 </div>
                                 <div class="control-group">	
     								<h5>Last Name</h5>
-                                    <input type="text" class="form-control" id="Lname" >
+                                    {!! Form::text('lname', null, array('required', 'class'=>'form-control',
+                                        'placeholder'=>'last name')) !!}
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
     								<h5>Age</h5>
-                                    <input type="text" class="form-control" id="age" >
+                                    {!! Form::number('age', null, array('required', 'class'=>'form-control',
+                                        'placeholder'=>'age')) !!}
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
     								<h5>Email Address</h5>
-                                    <input type="email" name="email" class="form-control" id="Email" >
+                                    {!! Form::email('email_add', null, array('required', 'class'=>'form-control',
+                                        'placeholder'=>'someone@example.com')) !!}
                                     <p class="help-block text-danger"></p>
                                 </div> 						
                             </div>
@@ -106,124 +121,37 @@
                                 <div class="control-group">
     								<h5>Date Applied</h5>
     									<div class="input-append"  >
-    										<input type="text" id="DateApplied" class="span2  date form-control" ><span class="add-on"><i class="icon-th"></i></span>
+                                            {!! Form::text('date_applied', null, array('required', 'class'=>'date span2 form-control',
+                                                'placeholder'=>'yyyy/mm/dd')) !!}
     									</div>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
     								<h5>Date of Birth</h5>
     										<div class="input-append" >
-    											<input type="text" id="DoB" class="date span2 form-control" ><span class="add-on"><i class="icon-th"></i></span>
+                                                {!! Form::text('birthdate', null, array('required', 'class'=>'date span2 form-control',
+                                                'placeholder'=>'yyyy/mm/dd')) !!}
+                                                <span class="add-on"><i class="icon-th"></i></span>
     										</div>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
     								<h5>Address</h5>
-                                    <textarea rows="5" class="form-control" id="ApplicantAddress "></textarea>
+                                        {!! Form::text('address', null, array('required', 'class'=>'form-control',
+                                            'placeholder'=>'full address')) !!}
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
     								<h5>Contact Number</h5>
-                                    <input type="number" class="form-control" id="ContactNum" placeholder="[ex. 09095531502]" >
+                                        {!! Form::text('contact_num', null, array('required', 'class'=>'form-control',
+                                            'placeholder'=>'ex. 0910xxxxxxx')) !!}
                                     <p class="help-block text-danger"></p>
                                 </div> 
                             </div>
                         </div>
-                        <!--END PROFILE-->		
-						
-                        <!--EDUC ATTAINMENT-->		                        
-            			<div id="educContainer">
-            				<div class="col-lg-12 educ row">
-            					<h3>EDUCATIONAL ATTAINMENT</h3>
-                            </div>
-                            <div class="row" id="educGroup">
-                                <div class="close"></div>
-                                <div class="form-group col-md-6 floating-label-form-group controls">
-                                    <h5>Level</h5>
-                                    <div class="btn-group">
-                                        <button type="button" id="EducLevel" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                            <span data-bind="label">Select One</span>&nbsp;<span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a href="#">Elementary</a>LEVEL
-                                            </li>
-                                            <li>
-                                                <a href="#">Secondary</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Tertiary</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Post Graduate</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="control-group">
-                                        <h5>School/University</h5>
-                                        <textarea rows="3" class="form-control" id="SchoolName" ></textarea>
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
+                        <!--END PROFILE-->
 
-                                <div class="form-group col-md-6 floating-label-form-group controls">
-                                    <div class="control-group">
-                                        <h5>School Year Graduated</h5>
-                                        <input type="text" class="form-control" id="SchoolYr">
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                    <div class="control-group"><h5>Address</h5><textarea rows="3" class="form-control" id="SchoolAddress" ></textarea><p class="help-block text-danger"></p></div>
-                                </div>
-                            </div>
-            			</div>
-                        <!--add another educational attainment !-->
-                        <button type="add" id="AppendedSchool" class="btn btn-success btn-sm">Add School/University</button>
-                        <!--END EDUC ATTAINMENT-->		
-						
-                        <!-- WORK EXPERIENCE-->						
-            			<div id="workContainer">
-            				<div class="col-lg-12 work">
-            				   <h3>WORK EXPERIENCE</h3>
-            				</div>
-                            <div class="row" id="workGroup">
-                                <div class="close"></div>
-                                <div class="form-group col-md-6 floating-label-form-group controls">
-                                    <div class="control-group">
-                                        <h5>Position</h5>
-                                        <textarea rows="2" class="form-control" id="WordPosition" ></textarea>
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                    <div class="control-group">
-                                        <h5>Company</h5>
-                                        <input type="text" class="form-control" id="CompanyName" >
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                    <div class="control-group">
-                                        <h5>Started</h5>
-                                        <div class="input-append">
-                                            <input type="text" id="WorkYrStarted" class="span2 form-control year">
-                                            <span class="add-on"><i class="icon-th"></i></span>
-                                        </div>
-                                        <p class="help-block text-danger">
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6 floating-label-form-group controls">
-                                    <div class="control-group">
-                                        <h5>Description of Tasks</h5>
-                                        <textarea rows="5" class="form-control" id="DescTask" ></textarea>
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                    <div class="control-group">
-                                        <h5>Ended</h5>
-                                        <input type="text" id="WorkYrEnded" class="span2 form-control year input-append">
-                                        <span class="add-on"><i class="icon-th"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-            			</div>
-            			<button type="add" id="AppendWork" class="btn btn-success btn-sm">Add Work Experience</button>	
-                        <!-- END WORK EXPERIENCE-->		
+                        					
                         <br>
                         <div id="success"></div>
                         <div class="row">
@@ -231,7 +159,7 @@
                                 <input type="submit" id="BtnSave" class="btn btn-success btn-lg">
                             </div>
                         </div>
-                    {!! Form::close() !!}
+                    </form>
                 </div>
             </div>
         </div>
@@ -288,6 +216,7 @@
                 
                 $('.date').datepicker({
                     weekStart: 1,
+                    format:"yyyy/mm/dd"
                 });
 				
 				$('.year').datepicker({
@@ -296,8 +225,7 @@
 					minViewMode: "months"
                 });
             });
-        </script>
-		
+        </script>		
 </body>
 
 </html>
