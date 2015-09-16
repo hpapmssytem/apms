@@ -60,8 +60,8 @@
                 <div class="col-lg-12">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form name="sentMessage" id="contactForm" 
-                        method="post" action="review.blade.php">
+                    {!! Form::open(array('route' => 'form.store', 'class' => 'form')) !!}
+
                     <!--PROFILE-->		                       
     					<div class="row">
                             <div class="form-group col-md-6 floating-label-form-group controls">
@@ -231,7 +231,7 @@
                                 <input type="submit" id="BtnSave" class="btn btn-success btn-lg">
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -270,17 +270,18 @@
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
 
-    <!-- Contact Form JavaScript -->
+    <!-- Contact Form JavaScript 
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/contact_me.js"></script>
+    -->
 
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
 	
 	<!-- Load jQuery and bootstrap datepicker scripts -->
-        <script src="js/jquery-1.9.1.min.js"></script>
-        <script src="js/bootstrap-datepicker.js"></script>
-		
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+	
         <script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use apms\Http\Requests;
 use apms\Http\Controllers\Controller;
 
+use apms\Http\Requests\ApplicationFormRequest;
+
 class FormController extends Controller
 {
     /**
@@ -35,9 +37,10 @@ class FormController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(ApplicationFormRequest $request)
     {
-        //
+        return \Redirect::route('form.index')
+            ->with('message', 'Your application has been created!');
     }
 
     /**
