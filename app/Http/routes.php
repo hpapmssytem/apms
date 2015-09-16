@@ -12,6 +12,6 @@
 */
 
 Route::get('/', "FormController@index");
-
+Route::resource('form', 'FormController');
 Route::get('form',
 	['as' => 'form', 'uses' => 'FormController@create']);

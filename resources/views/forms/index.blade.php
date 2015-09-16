@@ -60,7 +60,8 @@
                 <div class="col-lg-12">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form name="sentMessage" id="contactForm" novalidate>
+                    <form name="sentMessage" id="contactForm" 
+                        method="post" action="review.blade.php">
                     <!--PROFILE-->		                       
     					<div class="row">
                             <div class="form-group col-md-6 floating-label-form-group controls">
@@ -227,7 +228,7 @@
                         <div id="success"></div>
                         <div class="row">
                             <div class="form-group col-xs-12 text-center">
-                                <button type="submit" id="BtnSave" class="btn btn-success btn-lg">Save</button>
+                                <input type="submit" id="BtnSave" class="btn btn-success btn-lg">
                             </div>
                         </div>
                     </form>
