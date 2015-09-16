@@ -13,7 +13,7 @@ use apms\Applicant;
 use apms\Position;
 use apms\EducXp;
 use apms\WorkXp;
-
+use Input;
 class FormController extends Controller
 {
     /**
@@ -60,6 +60,24 @@ class FormController extends Controller
         ));
 
         $applicant->save();
+
+        $level = Input::get('level');
+        $schoolname = Input::get('school_name');
+        $yeargrad = Input::get('year_grad');
+        $schooladd = Input::get('school_address');
+
+        foreach ($schoolname as $key => $n) {
+
+            $educxp = new EducXp(array(
+            'level' => $level[$key],
+            'school_name' => $schoolname[$key],
+            'date_grad' => $yeargrad[$key],
+            'school_address' => $schooladd[$key]
+            ));
+
+            $applicant->educXps()->save($educxp);
+        }
+
 
         return \Redirect::route('form.index')
             ->with('message', 'Your application has been created!');

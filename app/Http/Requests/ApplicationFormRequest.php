@@ -24,7 +24,7 @@ class ApplicationFormRequest extends Request
     public function rules()
     {
         return [
-            'fname'         => 'required',
+            /*'fname'         => 'required',
             'mname'         => 'string',
             'lname'         => 'required',
             'age'           => 'required',
@@ -33,7 +33,7 @@ class ApplicationFormRequest extends Request
             'address'       => 'required',
             'contact_num'   => 'required',
             'email_add'     => 'required|email',
-            'position_id'   => 'required'
+            'position_id'   => 'required'*/
         ];
     }
 }

@@ -71,12 +71,13 @@
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                     <form method='post' action='{{ URL::route("form.store") }}'>
-                        <?php echo Form::token(); ?>
-                    <!--PROFILE-->		                       
-    					<div class="row">
+                        <?php echo Form::token() ?>
+
+                        <!--PROFILE-->                             
+                        <div class="row">
                             <div class="form-group col-md-6 floating-label-form-group controls">
-    							<h5>Applying Position</h5>
-    							<div class="form-group">
+                                <h5>Applying Position</h5>
+                                <div class="form-group">
                                     <select name="position_id">
                                         @foreach($positions as $position)
                                             <option value="{{ $position->id }}">
@@ -86,63 +87,63 @@
                                     </select>
                                 </div>
 
-    							<p class="help-block text-danger"></p>
+                                <p class="help-block text-danger"></p>
                                 <div class="control-group">
-        							<h5>First Name</h5>
+                                    <h5>First Name</h5>
                                     {!! Form::text('fname', null, array('required', 'class'=>'form-control',
                                         'placeholder'=>'First name')) !!}
                                     <p class="help-block text-danger"></p>
-                                </div>		
+                                </div>      
                                 <div class="control-group"> 
                                     <h5>Middle Name</h5>
                                     {!! Form::text('mname', null, array('class'=>'form-control',
                                         'placeholder'=>'middle name')) !!}
                                 </div>
-                                <div class="control-group">	
-    								<h5>Last Name</h5>
+                                <div class="control-group"> 
+                                    <h5>Last Name</h5>
                                     {!! Form::text('lname', null, array('required', 'class'=>'form-control',
                                         'placeholder'=>'last name')) !!}
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-    								<h5>Age</h5>
+                                    <h5>Age</h5>
                                     {!! Form::number('age', null, array('required', 'class'=>'form-control',
                                         'placeholder'=>'age')) !!}
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-    								<h5>Email Address</h5>
+                                    <h5>Email Address</h5>
                                     {!! Form::email('email_add', null, array('required', 'class'=>'form-control',
                                         'placeholder'=>'someone@example.com')) !!}
                                     <p class="help-block text-danger"></p>
-                                </div> 						
+                                </div>                      
                             </div>
                             <div class="form-group col-md-6 floating-label-form-group controls">
                                 <div class="control-group">
-    								<h5>Date Applied</h5>
-    									<div class="input-append"  >
+                                    <h5>Date Applied</h5>
+                                        <div class="input-append"  >
                                             {!! Form::text('date_applied', null, array('required', 'class'=>'date span2 form-control',
                                                 'placeholder'=>'yyyy/mm/dd')) !!}
-    									</div>
+                                        </div>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-    								<h5>Date of Birth</h5>
-    										<div class="input-append" >
+                                    <h5>Date of Birth</h5>
+                                            <div class="input-append" >
                                                 {!! Form::text('birthdate', null, array('required', 'class'=>'date span2 form-control',
                                                 'placeholder'=>'yyyy/mm/dd')) !!}
                                                 <span class="add-on"><i class="icon-th"></i></span>
-    										</div>
+                                            </div>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-    								<h5>Address</h5>
+                                    <h5>Address</h5>
                                         {!! Form::text('address', null, array('required', 'class'=>'form-control',
                                             'placeholder'=>'full address')) !!}
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-    								<h5>Contact Number</h5>
+                                    <h5>Contact Number</h5>
                                         {!! Form::text('contact_num', null, array('required', 'class'=>'form-control',
                                             'placeholder'=>'ex. 0910xxxxxxx')) !!}
                                     <p class="help-block text-danger"></p>
@@ -150,7 +151,48 @@
                             </div>
                         </div>
                         <!--END PROFILE-->
+                        <!--EDUC ATTAINMENT-->                              
+                        <div id="educContainer">
+                            <div class="col-lg-12 educ row">
+                                <h3>EDUCATIONAL ATTAINMENT</h3>
+                            </div>
+                            <div class="row" id="educGroup">
+                                <div class="close"></div>
+                                <div class="form-group col-md-6 floating-label-form-group controls">
+                                    <h5>Level</h5>
+                                    <div class="control-group">
+                                        {!! Form::select('level[]', array(
+                                            'Elementary' => 'Elementary', 
+                                            'Secondary' => 'Secondary',
+                                            'Tertiary' => 'Tertiary',
+                                            'Postgrad' => 'Postgrad')) !!}
+                                    </div>
+                                    <div class="control-group">
+                                        <h5>School/University</h5>
+                                        {!! Form::text('school_name[]', null, array('required', 'class'=>'form-control',
+                                        'placeholder'=>'school name')) !!}
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
 
+                                <div class="form-group col-md-6 floating-label-form-group controls">
+                                    <div class="control-group">
+                                        <h5>School Year Graduated</h5>
+                                        {!! Form::text('year_grad[]', null, array('required', 'class'=>'form-control',
+                                        'placeholder'=>'year')) !!}
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                    <div class="control-group"><h5>Address</h5>
+                                        {!! Form::text('school_address[]', null, array('required', 'class'=>'form-control',
+                                        'placeholder'=>'school address')) !!}
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--add another educational attainment !-->
+                        <button type="add" id="AppendedSchool" class="btn btn-success btn-sm">Add School/University</button>
+                        <!--END EDUC ATTAINMENT-->      
                         					
                         <br>
                         <div id="success"></div>
