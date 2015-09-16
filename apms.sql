@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2015 at 10:46 PM
+-- Generation Time: Sep 16, 2015 at 11:07 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `applicants` (
   `status` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `educ_xps` (
   `applicant_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -107,7 +107,15 @@ CREATE TABLE IF NOT EXISTS `positions` (
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `positions`
+--
+
+INSERT INTO `positions` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'PHP Developer', '*At least 1 year experience\r\n*Knowledgeable in PHP native programmine\r\n*Knowledgeable in Laravel Framework is preferred', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 'IOS developer', '*Has 1 year experience in said area*Has good knowledge in IOS application development programs.', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -191,17 +199,17 @@ ALTER TABLE `work_xps`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `educ_xps`
 --
 ALTER TABLE `educ_xps`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `positions`
 --
 ALTER TABLE `positions`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
