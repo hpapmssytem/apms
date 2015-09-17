@@ -33,7 +33,7 @@
     <![endif]-->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="js/append_work_school.js"></script>
+<script src="js/form-index.js"></script>
 </head>
 
 <head>
@@ -172,7 +172,7 @@
                                 <div class="form-group col-md-6 floating-label-form-group controls">
                                     <div class="control-group">
                                         <h5>School Year Graduated</h5>
-                                        {!! Form::text('year_grad[]', null, array('required', 'class'=>'form-control')) !!}
+                                        {!! Form::text('year_grad[]', null, array('required', 'class'=>'year form-control')) !!}
                                         <p class="help-block text-danger"></p>
                                     </div>
                                     <div class="control-group"><h5>Address</h5>
@@ -208,7 +208,7 @@
                                     <div class="control-group">
                                         <h5>Started</h5>
                                         <div class="input-append">
-                                            {!! Form::text('date_started[]', null, array('required', 'class'=>'span2 year form-control')) !!}
+                                            {!! Form::text('date_started[]', null, array('required', 'class'=>'span2 year-month form-control')) !!}
                                             <span class="add-on"><i class="icon-th"></i></span>
                                         </div>
                                         <p class="help-block text-danger">
@@ -223,7 +223,7 @@
                                     </div>
                                     <div class="control-group">
                                         <h5>Ended</h5>
-                                        {!! Form::text('date_ended[]', null, array('class'=>'span2 year form-control')) !!}
+                                        {!! Form::text('date_ended[]', null, array('class'=>'span2 year-month form-control')) !!}
                                         <span class="add-on"><i class="icon-th"></i></span>
                                     </div>
                                 </div>
@@ -287,25 +287,7 @@
 	
 	<!-- Load jQuery and bootstrap datepicker scripts -->
     <script src="js/jquery-1.9.1.min.js"></script>
-    <script src="js/bootstrap-datepicker.js"></script>
-	
-        <script type="text/javascript">
-            // When the document is ready
-            $(document).ready(function () {
-                $('.date').datepicker({
-                    weekStart: 1,
-                    format:"yyyy/mm/dd"
-                });
-				
-				$('.year').datepicker({
-                    format: "mm-yyyy",
-					viewMode: "months", 
-					minViewMode: "months"
-                });
-
-                $('.alert-info').delay(5000).slideUp(700);
-            });
-        </script>		
+    <script src="js/bootstrap-datepicker.js"></script>	
 </body>
 
 </html>

@@ -17,8 +17,8 @@ class CreateWorkXpsTable extends Migration
             $table->string('position');
             $table->string('company_name');
             $table->text('task_description');
-            $table->date('date_started');
-            $table->date('date_ended')->nullable();
+            $table->string('date_started');
+            $table->string('date_ended')->nullable();
             $table->integer('applicant_id')->unsigned();
             $table->foreign('applicant_id')->references('id')
                 ->on('applicants')->onDelete('cascade');
