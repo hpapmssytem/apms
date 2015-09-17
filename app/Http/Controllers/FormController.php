@@ -9,11 +9,13 @@ use apms\Http\Controllers\Controller;
 
 use apms\Http\Requests\ApplicationFormRequest;
 
+//Necessary models
 use apms\Applicant;
 use apms\Position;
 use apms\EducXp;
 use apms\WorkXp;
 use Input;
+
 class FormController extends Controller
 {
     /**
@@ -40,44 +42,67 @@ class FormController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param  ApplicationFormRequest  $request
      * @return Response
      */
     public function store(ApplicationFormRequest $request)
     {
+        //save applicant main profile
         $applicant = new Applicant(array(
-            'fname' => $request->get('fname'),
-            'mname' => $request->get('mname'),
-            'lname' => $request->get('lname'),
-            'age' => $request->get('age'),
-            'birthdate' => $request->get('birthdate'),
-            'date_applied' => $request->get('date_applied'),
-            'address' => $request->get('address'),
-            'contact_num' => $request->get('contact_num'),
-            'email_add' => $request->get('email_add'),
-            'position_id' => $request->get('position_id'),
-            'status' => 0
+            'fname'         => $request->get('fname'),
+            'mname'         => $request->get('mname'),
+            'lname'         => $request->get('lname'),
+            'age'           => $request->get('age'),
+            'birthdate'     => $request->get('birthdate'),
+            'date_applied'  => $request->get('date_applied'),
+            'address'       => $request->get('address'),
+            'contact_num'   => $request->get('contact_num'),
+            'email_add'     => $request->get('email_add'),
+            'position_id'   => $request->get('position_id'),
+            'status'        => 0
         ));
 
         $applicant->save();
 
-        $level = Input::get('level');
+        //get educational attinment(s)
+        $level      = Input::get('level');
         $schoolname = Input::get('school_name');
-        $yeargrad = Input::get('year_grad');
-        $schooladd = Input::get('school_address');
+        $yeargrad   = Input::get('year_grad');
+        $schooladd  = Input::get('school_address');
 
-        foreach ($schoolname as $key => $n) {
-
+        //add each attainment to the current profile
+        foreach ($schoolname as $key => $n) 
+        {
             $educxp = new EducXp(array(
-                'level' => $level[$key],
-                'school_name' => $schoolname[$key],
-                'date_grad' => $yeargrad[$key],
-                'school_address' => $schooladd[$key]
+                'level'             => $level[$key],
+                'school_name'       => $schoolname[$key],
+                'date_grad'         => $yeargrad[$key],
+                'school_address'    => $schooladd[$key]
             ));
 
             $applicant->educXps()->save($educxp);
         }
 
+        //get work experience(s)
+        $position = Input::get('position');
+        $company  = Input::get('company_name');
+        $task     = Input::get('task_description');
+        $start    = Input::get('date_started');
+        $end      = Input::get('date_ended');
+
+        //add each work to the current profile
+        foreach ($position as $key => $n) 
+        {
+            $workxp = new WorkXp(array(
+                'position'         => $position[$key],
+                'company_name'     => $company[$key],
+                'task_description' => $task[$key],
+                'date_started'     => $start[$key],
+                'date_ended'       => $end[$key]
+            ));
+
+            $applicant->workXps()->save($workxp);
+        }
 
         return \Redirect::route('form.index')
             ->with('message', 'Your application has been created!');

@@ -25,8 +25,10 @@ $(document).ready( function() {
     });
 
     //add another work experience
-    $("#AppendWork").click(function() {
+    $("#AppendWork").click(function($e) {
         //get educational group attainment form
+        $e.preventDefault();
+
         var x = $('#workGroup').wrap('<p/>').parent();
 
         //add new attainment

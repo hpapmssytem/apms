@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', "FormController@index");
+Route::get('/', "WelcomeController@index");
 
 Route::resource('form', 'FormController');

@@ -86,29 +86,24 @@
                                         @endforeach
                                     </select>
                                 </div>
-
                                 <p class="help-block text-danger"></p>
                                 <div class="control-group">
                                     <h5>First Name</h5>
-                                    {!! Form::text('fname', null, array('required', 'class'=>'form-control',
-                                        'placeholder'=>'First name')) !!}
+                                    {!! Form::text('fname', null, array('required', 'class'=>'form-control')) !!}
                                     <p class="help-block text-danger"></p>
                                 </div>      
                                 <div class="control-group"> 
                                     <h5>Middle Name</h5>
-                                    {!! Form::text('mname', null, array('class'=>'form-control',
-                                        'placeholder'=>'middle name')) !!}
+                                    {!! Form::text('mname', null, array('class'=>'form-control')) !!}
                                 </div>
                                 <div class="control-group"> 
                                     <h5>Last Name</h5>
-                                    {!! Form::text('lname', null, array('required', 'class'=>'form-control',
-                                        'placeholder'=>'last name')) !!}
+                                    {!! Form::text('lname', null, array('required', 'class'=>'form-control')) !!}
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
                                     <h5>Age</h5>
-                                    {!! Form::number('age', null, array('required', 'class'=>'form-control',
-                                        'placeholder'=>'age')) !!}
+                                    {!! Form::number('age', null, array('required', 'class'=>'form-control')) !!}
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
@@ -129,11 +124,11 @@
                                 </div>
                                 <div class="control-group">
                                     <h5>Date of Birth</h5>
-                                            <div class="input-append" >
-                                                {!! Form::text('birthdate', null, array('required', 'class'=>'date span2 form-control',
-                                                'placeholder'=>'yyyy/mm/dd')) !!}
-                                                <span class="add-on"><i class="icon-th"></i></span>
-                                            </div>
+                                    <div class="input-append" >
+                                        {!! Form::text('birthdate', null, array('required', 'class'=>'date span2 form-control',
+                                        'placeholder'=>'yyyy/mm/dd')) !!}
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
@@ -169,8 +164,7 @@
                                     </div>
                                     <div class="control-group">
                                         <h5>School/University</h5>
-                                        {!! Form::text('school_name[]', null, array('required', 'class'=>'form-control',
-                                        'placeholder'=>'school name')) !!}
+                                        {!! Form::text('school_name[]', null, array('required', 'class'=>'form-control')) !!}
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
@@ -178,13 +172,12 @@
                                 <div class="form-group col-md-6 floating-label-form-group controls">
                                     <div class="control-group">
                                         <h5>School Year Graduated</h5>
-                                        {!! Form::text('year_grad[]', null, array('required', 'class'=>'form-control',
-                                        'placeholder'=>'year')) !!}
+                                        {!! Form::text('year_grad[]', null, array('required', 'class'=>'form-control')) !!}
                                         <p class="help-block text-danger"></p>
                                     </div>
                                     <div class="control-group"><h5>Address</h5>
                                         {!! Form::text('school_address[]', null, array('required', 'class'=>'form-control',
-                                        'placeholder'=>'school address')) !!}
+                                        'placeholder'=>'full address')) !!}
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
@@ -192,8 +185,52 @@
                         </div>
                         <!--add another educational attainment !-->
                         <button type="add" id="AppendedSchool" class="btn btn-success btn-sm">Add School/University</button>
+                        <p class="help-block text-danger"></p>
                         <!--END EDUC ATTAINMENT-->      
-                        					
+                        <!-- WORK EXPERIENCE-->                     
+                        <div id="workContainer">
+                            <div class="col-lg-12 work">
+                               <h3>WORK EXPERIENCE</h3>
+                            </div>
+                            <div class="row" id="workGroup">
+                                <div class="close"></div>
+                                <div class="form-group col-md-6 floating-label-form-group controls">
+                                    <div class="control-group">
+                                        <h5>Position</h5>
+                                        {!! Form::text('position[]', null, array('required', 'class'=>'form-control')) !!}
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                    <div class="control-group">
+                                        <h5>Company</h5>
+                                        {!! Form::text('company_name[]', null, array('required', 'class'=>'form-control')) !!}
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                    <div class="control-group">
+                                        <h5>Started</h5>
+                                        <div class="input-append">
+                                            {!! Form::text('date_started[]', null, array('required', 'class'=>'span2 year form-control')) !!}
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div>
+                                        <p class="help-block text-danger">
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 floating-label-form-group controls">
+                                    <div class="control-group">
+                                        <h5>Description of Tasks</h5>
+                                        {!! Form::textarea('task_description[]', null, array('required', 'class'=>'form-control', 'rows' => '5')) !!}
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                    <div class="control-group">
+                                        <h5>Ended</h5>
+                                        {!! Form::text('date_ended[]', null, array('class'=>'span2 year form-control')) !!}
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="add" id="AppendWork" class="btn btn-success btn-sm">Add Work Experience</button>  
+                        <!-- END WORK EXPERIENCE-->				
                         <br>
                         <div id="success"></div>
                         <div class="row">
