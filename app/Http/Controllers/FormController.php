@@ -14,6 +14,7 @@ use apms\Applicant;
 use apms\Position;
 use apms\EducXp;
 use apms\WorkXp;
+
 use Input;
 
 class FormController extends Controller
@@ -26,6 +27,7 @@ class FormController extends Controller
     public function index()
     {
         $positions = Position::select('id', 'name')->get();
+
         return view('forms.index')->with('positions', $positions);
     }
 

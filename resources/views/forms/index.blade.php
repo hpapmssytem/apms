@@ -292,7 +292,6 @@
         <script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {
-                
                 $('.date').datepicker({
                     weekStart: 1,
                     format:"yyyy/mm/dd"
@@ -303,6 +302,8 @@
 					viewMode: "months", 
 					minViewMode: "months"
                 });
+
+                $('.alert-info').delay(5000).slideUp(700);
             });
         </script>		
 </body>
