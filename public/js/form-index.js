@@ -39,8 +39,13 @@ $(function() {
 
         $educToDelete = $(this).closest('#educGroup');
         $(this).remove();
-        $educToDelete.prev().remove();
-        $educToDelete.slideUp(1000, function(){ $educToDelete.remove() });
+        //ssdsada
+        $educToDelete.prev().slideUp(500, function(){
+            $educToDelete.prev().remove();
+        });
+        $educToDelete.slideUp(500, function(){ 
+            $educToDelete.remove() 
+        });
     });
 
     /**
@@ -71,8 +76,12 @@ $(function() {
 
         $workToDelete = $(this).closest('#workGroup');
         $(this).remove();
-        $workToDelete.prev().remove();
-        $workToDelete.slideUp(1000, function(){ $workToDelete.remove() });
+        $workToDelete.prev().slideUp(400, function(){
+            $workToDelete.prev().remove();
+        });
+        $workToDelete.slideUp(500, function(){ 
+            $workToDelete.remove() 
+        });
     });
 
     /**
