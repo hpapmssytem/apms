@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="control-group">
                                     <h5>Age</h5>
-                                    {!! Form::number('age', null, array('required', 'class'=>'form-control')) !!}
+                                    {!! Form::number('age', null, array('required', 'class'=>'form-control', 'min'=>'18')) !!}
                                     <p class="help-block text-danger"></p>
                                 </div>                     
                             </div>
@@ -154,7 +154,7 @@
                             </div>  
                             <div id="educGroup">
                                 <div class="col-lg-12 controls">
-                                    <div class="close "></div>
+                                    <div class="close"></div>
                                 </div>
                                 <br />
                                 <div class="form-group col-md-6 floating-label-form-group controls">
@@ -221,17 +221,17 @@
                                         <p class="help-block text-danger">
                                         </p>
                                     </div>
-                                </div>
-                                <div class="form-group col-md-6 floating-label-form-group controls">
-                                    <div class="control-group">
-                                        <h5>Description of Tasks</h5>
-                                        {!! Form::textarea('task_description[]', null, array('required', 'class'=>'form-control', 'rows' => '5')) !!}
-                                        <p class="help-block text-danger"></p>
-                                    </div>
                                     <div class="control-group">
                                         <h5>Ended</h5>
                                         {!! Form::text('date_ended[]', null, array('class'=>'span2 year-month form-control')) !!}
                                         <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 floating-label-form-group controls">
+                                    <div class="control-group">
+                                        <h5>Description of Tasks</h5>
+                                        {!! Form::textarea('task_description[]', null, array('required', 'class'=>'form-control', 'rows' => '8.5')) !!}
+                                        <p class="help-block text-danger"><br /></p>
                                     </div>
                                 </div>
                             </div>
