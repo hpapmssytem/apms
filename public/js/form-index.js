@@ -1,5 +1,9 @@
 $(function() {
 
+    /*$("#educContainer").bind("append", function() {
+        $(this).fadeIn(1000);
+    });*/
+
     /**
     * INITIALIZATIONS
     * Add date pickers
@@ -26,7 +30,8 @@ $(function() {
 
         //add new attainment
         $x.find('.close').html('<a>x</a>');
-        $("#educContainer").append("<hr />"+$x.html());
+        $toAppend = "<hr />"+$x.html();
+        $("#educContainer").append($toAppend);
         $('#educGroup').unwrap();
 
         $(".educ").next().find('.close').html("");
@@ -37,14 +42,13 @@ $(function() {
     $("#educContainer").on('click', '.close', function( $e ) {
         $e.preventDefault();
 
-        $educToDelete = $(this).closest('#educGroup');
+        $educToRemove = $(this).closest('#educGroup');
         $(this).remove();
-        //ssdsada
-        $educToDelete.prev().slideUp(500, function(){
-            $educToDelete.prev().remove();
+        $educToRemove.prev().slideUp(500, function(){
+            $educToRemove.prev().remove();
         });
-        $educToDelete.slideUp(500, function(){ 
-            $educToDelete.remove() 
+        $educToRemove.slideUp(500, function(){ 
+            $educToRemove.remove() 
         });
     });
 
@@ -74,13 +78,13 @@ $(function() {
     $("#workContainer").on('click', '.close', function( e ) {
         e.preventDefault();
 
-        $workToDelete = $(this).closest('#workGroup');
+        $workToRemove = $(this).closest('#workGroup');
         $(this).remove();
-        $workToDelete.prev().slideUp(400, function(){
-            $workToDelete.prev().remove();
+        $workToRemove.prev().slideUp(500, function(){
+            $workToRemove.prev().remove();
         });
-        $workToDelete.slideUp(500, function(){ 
-            $workToDelete.remove() 
+        $workToRemove.slideUp(500, function(){ 
+            $workToRemove.remove() 
         });
     });
 
@@ -112,4 +116,10 @@ $(function() {
             minViewMode: "months"
         });
     }
+
+    //Form ssubmissiotn confirmation
+    $('input#BtnSave').bind('click', function() {
+        if(!confirm('Make sure the information are correct.\nSubmit application?') )
+            return false;
+    });
 });

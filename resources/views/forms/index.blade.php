@@ -22,9 +22,11 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-
-	
+    <style rel="text/css">
+        select.form-control{
+            width:150px;
+        }
+    </style>	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -49,7 +51,6 @@
         </div>
     </header>
     <!-- Contact Section -->
-    <section id="contact">
         <div class="container">
             <div class="row">
                 @if(Session::has('message'))
@@ -62,9 +63,6 @@
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
-                <div class="col-lg-12 profile">
-				    <h3>PROFILE</h3>
-				</div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -75,10 +73,13 @@
 
                         <!--PROFILE-->                             
                         <div class="row">
+                            <div class="col-lg-12 profile row">
+                                <h3>PROFILE</h3>
+                            </div>
                             <div class="form-group col-md-6 floating-label-form-group controls">
                                 <h5>Applying Position</h5>
                                 <div class="form-group">
-                                    <select name="position_id">
+                                    <select name="position_id" class='form-control'>
                                         @foreach($positions as $position)
                                             <option value="{{ $position->id }}">
                                                 {{ $position->name }}
@@ -105,13 +106,7 @@
                                     <h5>Age</h5>
                                     {!! Form::number('age', null, array('required', 'class'=>'form-control')) !!}
                                     <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="control-group">
-                                    <h5>Email Address</h5>
-                                    {!! Form::email('email_add', null, array('required', 'class'=>'form-control',
-                                        'placeholder'=>'someone@example.com')) !!}
-                                    <p class="help-block text-danger"></p>
-                                </div>                      
+                                </div>                     
                             </div>
                             <div class="form-group col-md-6 floating-label-form-group controls">
                                 <div class="control-group">
@@ -138,6 +133,12 @@
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
+                                    <h5>Email Address</h5>
+                                    {!! Form::email('email_add', null, array('required', 'class'=>'form-control',
+                                        'placeholder'=>'someone@example.com')) !!}
+                                    <p class="help-block text-danger"></p>
+                                </div> 
+                                <div class="control-group">
                                     <h5>Contact Number</h5>
                                         {!! Form::text('contact_num', null, array('required', 'class'=>'form-control',
                                             'placeholder'=>'ex. 0910xxxxxxx')) !!}
@@ -146,13 +147,16 @@
                             </div>
                         </div>
                         <!--END PROFILE-->
-                        <!--EDUC ATTAINMENT-->                              
-                        <div id="educContainer">
+                        <!--EDUC ATTAINMENT-->                            
+                        <div id="educContainer" class="row">
                             <div class="col-lg-12 educ row">
                                 <h3>EDUCATIONAL ATTAINMENT</h3>
-                            </div>
-                            <div class="row" id="educGroup">
-                                <div class="close"></div>
+                            </div>  
+                            <div id="educGroup">
+                                <div class="col-lg-12 controls">
+                                    <div class="close "></div>
+                                </div>
+                                <br />
                                 <div class="form-group col-md-6 floating-label-form-group controls">
                                     <h5>Level</h5>
                                     <div class="control-group">
@@ -160,7 +164,7 @@
                                             'Elementary' => 'Elementary', 
                                             'Secondary' => 'Secondary',
                                             'Tertiary' => 'Tertiary',
-                                            'Postgrad' => 'Postgrad')) !!}
+                                            'Postgrad' => 'Postgrad'), null, array('class' => 'form-control')) !!}
                                     </div>
                                     <div class="control-group">
                                         <h5>School/University</h5>
@@ -188,12 +192,15 @@
                         <p class="help-block text-danger"></p>
                         <!--END EDUC ATTAINMENT-->      
                         <!-- WORK EXPERIENCE-->                     
-                        <div id="workContainer">
-                            <div class="col-lg-12 work">
+                        <div id="workContainer" class="row">
+                            <div class="col-lg-12 work row">
                                <h3>WORK EXPERIENCE</h3>
                             </div>
-                            <div class="row" id="workGroup">
-                                <div class="close"></div>
+                            <div id="workGroup">
+                                <div class="col-lg-12 controls">
+                                    <div class="close "></div>
+                                </div>
+                                <br />
                                 <div class="form-group col-md-6 floating-label-form-group controls">
                                     <div class="control-group">
                                         <h5>Position</h5>
@@ -242,7 +249,6 @@
                 </div>
             </div>
         </div>
-    </section>
 
     <!-- Footer -->
     <footer class="text-center">
@@ -287,7 +293,19 @@
 	
 	<!-- Load jQuery and bootstrap datepicker scripts -->
     <script src="js/jquery-1.9.1.min.js"></script>
-    <script src="js/bootstrap-datepicker.js"></script>	
+    <script src="js/bootstrap-datepicker.js"></script>
+
+    <!--
+    <script type="text/javascript">
+        (function($) {
+            var origAppend = $.fn.append;
+
+            $.fn.append = function () {
+                return origAppend.apply(this, arguments).trigger("append");
+            };
+        })(jQuery);
+    </script>
+    -->
 </body>
 
 </html>
