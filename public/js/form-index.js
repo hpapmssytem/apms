@@ -22,11 +22,11 @@ $(function() {
         $e.preventDefault();
 
         //get educational group attainment form
-        var x = $('#educGroup').wrap('<p/>').parent();
+        $x = $('#educGroup').wrap('<p/>').parent();
 
         //add new attainment
-        x.find('.close').html('<a>x</a>');
-        $("#educContainer").append("<hr />"+x.html());
+        $x.find('.close').html('<a>x</a>');
+        $("#educContainer").append("<hr />"+$x.html());
         $('#educGroup').unwrap();
 
         $(".educ").next().find('.close').html("");
@@ -34,12 +34,13 @@ $(function() {
     });
 
     //remove educational attainment
-    $("#educContainer").on('click', '.close', function( e ) {
-        e.preventDefault();
+    $("#educContainer").on('click', '.close', function( $e ) {
+        $e.preventDefault();
 
-        var educToDelete = $(this).closest('#educGroup');
-        educToDelete.prev().remove();
-        educToDelete.remove();
+        $educToDelete = $(this).closest('#educGroup');
+        $(this).remove();
+        $educToDelete.prev().remove();
+        $educToDelete.slideUp(1000, function(){ $educToDelete.remove() });
     });
 
     /**
@@ -53,11 +54,11 @@ $(function() {
         $e.preventDefault();
 
         //get work group attainment form
-        var x = $('#workGroup').wrap('<p/>').parent();
+        $x = $('#workGroup').wrap('<p/>').parent();
 
         //add new work
-        x.find('.close').html('<a>x</a>');
-        $("#workContainer").append("<hr />"+x.html());
+        $x.find('.close').html('<a>x</a>');
+        $("#workContainer").append("<hr />"+$x.html());
         $('#workGroup').unwrap();
 
         $(".work").next().find('.close').html("");
@@ -68,9 +69,10 @@ $(function() {
     $("#workContainer").on('click', '.close', function( e ) {
         e.preventDefault();
 
-        var educToDelete = $(this).closest('#workGroup');
-        educToDelete.prev().remove();
-        educToDelete.remove();
+        $workToDelete = $(this).closest('#workGroup');
+        $(this).remove();
+        $workToDelete.prev().remove();
+        $workToDelete.slideUp(1000, function(){ $workToDelete.remove() });
     });
 
     /**
