@@ -32,20 +32,18 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="js/append_work_school.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="js/alert-message.js"></script>
 </head>
 
-<head>
-
     <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <img class="img-responsive" src="img/hplogo.png" alt="">
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <img class="img-responsive" src="img/hplogo.png" alt="">
+          </div>
         </div>
+      </div>
     </header>
 
 <body id="page-top" class="index">
@@ -86,10 +84,12 @@
                 </tr>
               </thead>
               <tbody>
-                <?php $a = 1; ?>
+                <?php 
+                  $counter = 1;
+                ?>
                 @foreach($applicants as $applicant)
                   <tr>
-                      <td><?php echo $a++; ?></td>
+                      <td><?php echo $counter++; ?></td>
                       <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
                       <td>{{ $applicant->position->name}}</td>
                       <td>{{ $applicant->fname." ".$applicant->lname}}</td>

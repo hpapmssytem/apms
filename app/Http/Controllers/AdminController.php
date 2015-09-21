@@ -81,7 +81,6 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        echo "HEEEEEEEEEEEERE!";
         $applicant = Applicant::find($id);
 
         $applicant->status = Input::get('status');
