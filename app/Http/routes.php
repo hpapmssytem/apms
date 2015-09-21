@@ -14,4 +14,5 @@
 Route::get('/', "FormController@index");
 Route::get('admin', 'AdminController@index');
 
+Route::resource('admin', 'AdminController');
 Route::resource('form', 'FormController');

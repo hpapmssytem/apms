@@ -49,17 +49,23 @@
     <!--START OF VIEW -->
         <div class="container">
             <div class="col-md-12">
-                <h4>STATUS:  
-                <select name="status" id="AppStatus">
-                <option value="1">APPLICANT</option>
-                <option value="2">EMPLOYED</option>
-                <option value="2">END OF CONTRACT</option>
-                <option value="2">REJECTED</option>
-                </select>
-                <button id="BtnNext" class="btn btn-success btn-md"> SAVE </button></h4>
+                <!--<form method="PUT" action="{{ URL::route('form.update', $applicant->id) }}">-->
+                {!! Form::model($applicant, array('method' => 'PUT', 'route' => ['admin.update', $applicant->id], 
+                    'class' => 'form')) !!}
+                    <h4>STATUS:</h4>
+                    <select name="status" id="AppStatus">
+                        <option value="1">APPLICANT</option>
+                        <option value="2">EMPLOYED</option>
+                        <option value="3">END OF CONTRACT</option>
+                        <option value="4">REJECTED</option>
+                    </select>
+                    <!--<button id="BtnNext" class="btn btn-success btn-md"> SAVE </button>-->
+                    <input type="submit" id="BtnSave" class="btn btn-success btn-md" value="Apply">
+                {!! Form::close() !!}
             </div>
 
             <div class="col-lg-4">
+
                 <h4>APPLICANT ID: {{ $applicant->id }}</h4>
             </div>
             <div class="col-lg-4">
@@ -133,7 +139,7 @@
                 </div>
             </div>
         </footer>
-    <!--END OF VIEW -->
+    <!--END OF VIEW --> 
 
     <!-- jQuery -->
         <script src="/js/jquery.js"></script>
@@ -149,8 +155,8 @@
         <script src="/js/cbpAnimatedHeader.js"></script>
 
         <!-- Contact Form JavaScript -->
-        <script src="/js/jqBootstrapValidation.js"></script>
-        <script src="/js/contact_me.js"></script>
+        <!--<script src="/js/jqBootstrapValidation.js"></script>
+        <script src="/js/contact_me.js"></script>-->
 
         <!-- Custom Theme JavaScript -->
         <script src="/js/freelancer.js"></script>

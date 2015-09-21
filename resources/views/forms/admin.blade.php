@@ -51,7 +51,13 @@
 <body id="page-top" class="index">
   <!--START OF ADMIN -->          
   <div class="container">
-
+    <div class="row">
+      @if(Session::has('message'))
+          <div class="alert alert-info">
+              {{ Session::get('message') }}
+          </div>
+      @endif
+    </div>
     <!--SEARCH-->
     <input type="search" name="ApplicantSearch">
     <button id="BtnSubmitSearch" class="btn btn-success btn-sm">Search</button>
@@ -84,7 +90,7 @@
                 @foreach($applicants as $applicant)
                   <tr>
                       <td><?php echo $a++; ?></td>
-                      <td><a href="{{ URL::route('form.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+                      <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
                       <td>{{ $applicant->position->name}}</td>
                       <td>{{ $applicant->fname." ".$applicant->lname}}</td>
                   </tr>

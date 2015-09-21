@@ -141,9 +141,15 @@ class FormController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update($id, ApplicationFormRequest $request)
     {
-        //
+        echo "HEEEEEEEEEEEERE!";
+        $applicant = Applicant::find($id);
+
+        $applicant->status = 2;
+        $applicant->save();
+        //return \Redirect::route('form.index')
+        //    ->with('message', 'Applicant has been updated!');
     }
 
     /**
