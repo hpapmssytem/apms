@@ -129,7 +129,9 @@ class FormController extends Controller
      */
     public function edit($id)
     {
-        //
+        $applicant = Applicant::findOrFail($id);
+
+        return view('forms.view_information')->with('applicant', $applicant);
     }
 
     /**

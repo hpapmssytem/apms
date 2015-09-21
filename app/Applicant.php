@@ -22,7 +22,7 @@ class Applicant extends Model
 
     public function position()
     {
-    	return $this->belongTo('apms\Position');
+    	return $this->belongsTo('apms\Position');
     }
 
     public function educXps()
