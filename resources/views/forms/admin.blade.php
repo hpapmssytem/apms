@@ -33,17 +33,7 @@
   <![endif]-->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="js/tablesorter/jquery-latest.js/"></script>
-  <script src="js/tablesorter/jquery.tablesorter.js"></script>
-  <script src="js/tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
   <script src="js/alert-message.js"></script>
-  <script>
-    $(function(){
-      $("#applicantTable") 
-      .tablesorter() 
-      .tablesorterPager({container: $("#pager")}); 
-    });
-  </script>
 </head>
 
     <header>
@@ -307,8 +297,19 @@
   <!-- Load jQuery and bootstrap datepicker scripts -->
   <script src="js/jquery-1.9.1.min.js"></script>
   <script src="js/bootstrap-datepicker.js"></script>
+
+  <script src="js/tablesorter/jquery-latest.js/"></script>
+  <script src="js/tablesorter/jquery.tablesorter.js"></script>
+  <script src="js/tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
+  <script>
+    $(function(){
+      $("#applicantTable") 
+      .tablesorter() 
+      .tablesorterPager({container: $("#pager")}); 
+    });
+  </script>
   
-  <script type="text/javascript">
+  <!--<script type="text/javascript">
     // When the document is ready
     $(document).ready(function () {
         
@@ -322,8 +323,7 @@
             minViewMode: "months"
         });
     });
-  </script>
-        
+  </script>-->
 </body>
 
 </html>
