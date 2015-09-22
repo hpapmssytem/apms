@@ -10,8 +10,7 @@ class EducXp extends Model
 		'level',
 		'school_name',
 		'school_address',
-		'date_grad',
-		'applicant_id'
+		'date_grad'
 	];
 
     public function applicant()

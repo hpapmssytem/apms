@@ -76,10 +76,10 @@ class FormController extends Controller
         foreach ($schoolname as $key => $n) 
         {
             $educxp = new EducXp(array(
-                'level'             => $level[$key],
-                'school_name'       => $schoolname[$key],
-                'date_grad'         => $yeargrad[$key],
-                'school_address'    => $schooladd[$key]
+                'level'          => $level[$key],
+                'school_name'    => $schoolname[$key],
+                'date_grad'      => $yeargrad[$key],
+                'school_address' => $schooladd[$key]
             ));
 
             $applicant->educXps()->save($educxp);

@@ -22,7 +22,8 @@ class AdminController extends Controller
             'id', 
             'fname', 
             'lname', 
-            'position_id')->get();
+            'position_id',
+            'status')->get();
 
         return view('forms.admin')->with('applicants', $applicants);
     }

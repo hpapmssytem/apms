@@ -11,8 +11,7 @@ class WorkXp extends Model
 		'company_name',
 		'task_description',
 		'date_started',
-		'date_ended',
-		'applicant_id'
+		'date_ended'
 	];
     public function applicant()
     {

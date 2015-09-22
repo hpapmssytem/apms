@@ -54,25 +54,26 @@
                     'class' => 'form')) !!}
                     <h4>STATUS:</h4>
                     <select name="status" id="AppStatus">
-                        <option value="1">APPLICANT</option>
-                        <option value="2">EMPLOYED</option>
+                        <option value="0">APPLICANT</option>
+                        <option value="1">EMPLOYED</option>
+                        <option value="2">REJECTED</option>
                         <option value="3">END OF CONTRACT</option>
-                        <option value="4">REJECTED</option>
+                        <option value="4">RESIGNED</option>
                     </select>
                     <!--<button id="BtnNext" class="btn btn-success btn-md"> SAVE </button>-->
                     <input type="submit" id="BtnSave" class="btn btn-success btn-md" value="Apply">
                 {!! Form::close() !!}
             </div>
-
-            <div class="col-lg-4">
-
-                <h4>APPLICANT ID: {{ $applicant->id }}</h4>
-            </div>
-            <div class="col-lg-4">
-                <h4>APPLIED FOR: {{ $applicant->position->name}}</h4>
-            </div>
-            <div class="col-lg-4">
-                <h4>DATE APPLIED: {{ $applicant->date_applied }}</h4>
+            <div class="row col-md-12">
+                <div class="col-lg-4">
+                    <h4>APPLICANT ID: {{ $applicant->id }}</h4>
+                </div>
+                <div class="col-lg-4">
+                    <h4>APPLIED FOR: {{ $applicant->position->name}}</h4>
+                </div>
+                <div class="col-lg-4">
+                    <h4>DATE APPLIED: {{ $applicant->date_applied }}</h4>
+                </div>
             </div>
 
             <div class="col-lg-12 profile">
@@ -94,7 +95,15 @@
             <div class="col-lg-12 educ">
                 <h3>EDUCATIONAL ATTAINMENT</h3>
             </div>
+            <?php $counter = 1; ?>
             @foreach($applicant->educXps as $educXp)
+                <?php
+                    if($counter > 1)
+                    {
+                        echo "<hr />";
+                    }
+                    $counter++;
+                ?>
                 <div class="row col-md-12">
                     <div class="col-md-6">
                         <p>LEVEL: {{ $educXp->level }}</p>

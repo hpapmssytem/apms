@@ -33,7 +33,17 @@
   <![endif]-->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="js/tablesorter/jquery-latest.js/"></script>
+  <script src="js/tablesorter/jquery.tablesorter.js"></script>
+  <script src="js/tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
   <script src="js/alert-message.js"></script>
+  <script>
+    $(function(){
+      $("#applicantTable") 
+      .tablesorter() 
+      .tablesorterPager({container: $("#pager")}); 
+    });
+  </script>
 </head>
 
     <header>
@@ -64,9 +74,9 @@
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#applicant">APPLICANTS</a></li>
       <li><a data-toggle="tab" href="#employed">EMPLOYED</a></li>
-      <li><a data-toggle="tab" href="#resigned">RESIGNED</a></li>
+      <li><a data-toggle="tab" href="#resigned">REJECTED</a></li>
       <li><a data-toggle="tab" href="#eoc">END OF CONTRACT</a></li>
-      <li><a data-toggle="tab" href="#rejected">REJECTED</a></li>
+      <li><a data-toggle="tab" href="#rejected">RESIGNED</a></li>
     </ul>
 
     <div class="tab-content">
@@ -74,13 +84,13 @@
         <h4>APPLICANTS</h4>
         <div class="row">
           <div class="col-lg-12">
-            <table class="table table-hover">
+            <table id="applicantTable" class="table table-hover tablesorter">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Applicant ID</th>
-                  <th>Applying Position</th>
-                  <th>Name</th>
+                  <th class="header">Applicant ID</th>
+                  <th class="header">Applying Position</th>
+                  <th class="header">Name</th>
                 </tr>
               </thead>
               <tbody>
@@ -88,15 +98,40 @@
                   $counter = 1;
                 ?>
                 @foreach($applicants as $applicant)
-                  <tr>
-                      <td><?php echo $counter++; ?></td>
-                      <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
-                      <td>{{ $applicant->position->name}}</td>
-                      <td>{{ $applicant->fname." ".$applicant->lname}}</td>
-                  </tr>
+                  @if($applicant->status == 0)
+                    <tr>
+                        <td><?php echo $counter++; ?></td>
+                        <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+                        <td>{{ $applicant->position->name}}</td>
+                        <td>{{ $applicant->fname." ".$applicant->lname}}</td>
+                    </tr>
+                  @endif
                 @endforeach
               </tbody>
             </table>
+            <div id="pager" class="pager">
+              <form>
+                <button type="button" class="btn btn-default btn-xs first">
+                  <span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-xs prev">
+                  <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-xs next">
+                  <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-xs last">
+                  <span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span>
+                </button>
+                <select class="pagesize">
+                  <option selected="selected" value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                </select>
+              </form>
+              <br /><br />
+            </div>
           </div>
         </div>
       </div>
@@ -115,12 +150,19 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>09876</td>
-                  <td>IOS Developer</td>
-                  <td>John Doe Smith</td>
-                </tr>
+                <?php 
+                  $counter = 1;
+                ?>
+                @foreach($applicants as $applicant)
+                  @if($applicant->status == 1)
+                    <tr>
+                        <td><?php echo $counter++; ?></td>
+                        <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+                        <td>{{ $applicant->position->name}}</td>
+                        <td>{{ $applicant->fname." ".$applicant->lname}}</td>
+                    </tr>
+                  @endif
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -128,7 +170,7 @@
       </div>
 
       <div id="resigned" class="tab-pane fade">
-        <h4>RESIGNED</h4>
+        <h4>REJECTED</h4>
         <div class="row">
           <div class="col-lg-12">
             <table class="table table-hover">
@@ -140,14 +182,20 @@
                   <th>Name</th>
                 </tr>
               </thead>
-              
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>09876</td>
-                  <td>IOS Developer</td>
-                  <td>John Doe Smith</td>
-                </tr>
+                <?php 
+                  $counter = 1;
+                ?>
+                @foreach($applicants as $applicant)
+                  @if($applicant->status == 2)
+                    <tr>
+                        <td><?php echo $counter++; ?></td>
+                        <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+                        <td>{{ $applicant->position->name}}</td>
+                        <td>{{ $applicant->fname." ".$applicant->lname}}</td>
+                    </tr>
+                  @endif
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -168,12 +216,19 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>09876</td>
-                  <td>IOS Developer</td>
-                  <td>John Doe Smith</td>
-                </tr>
+                <?php 
+                  $counter = 1;
+                ?>
+                @foreach($applicants as $applicant)
+                  @if($applicant->status == 3)
+                    <tr>
+                        <td><?php echo $counter++; ?></td>
+                        <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+                        <td>{{ $applicant->position->name}}</td>
+                        <td>{{ $applicant->fname." ".$applicant->lname}}</td>
+                    </tr>
+                  @endif
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -181,7 +236,7 @@
       </div>
 
       <div id="rejected" class="tab-pane fade">
-        <h4>REJECTED</h4>
+        <h4>RESIGNED</h4>
         <div class="row">
           <div class="col-lg-12">
             <table class="table table-hover">
@@ -194,12 +249,19 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>09876</td>
-                  <td>IOS Developer</td>
-                  <td>John Doe Smith</td>
-                </tr>
+                <?php 
+                  $counter = 1;
+                ?>
+                @foreach($applicants as $applicant)
+                  @if($applicant->status == 4)
+                    <tr>
+                        <td><?php echo $counter++; ?></td>
+                        <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+                        <td>{{ $applicant->position->name}}</td>
+                        <td>{{ $applicant->fname." ".$applicant->lname}}</td>
+                    </tr>
+                  @endif
+                @endforeach
               </tbody>
             </table>
           </div>
