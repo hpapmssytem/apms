@@ -3,48 +3,45 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>Applicant Records</title>
+    <title>Applicant Records</title>
 
-  <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-  <link rel="stylesheet" href="css/datepicker.css">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link rel="stylesheet" href="css/datepicker.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom CSS -->
-  <link href="css/freelancer.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/freelancer.css" rel="stylesheet">
 
-  <!-- Custom Fonts -->
-  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css"/>
 
-
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="js/alert-message.js"></script>
+    <![endif]-->
 </head>
 
-    <header>
-      <div class="container">
+<header>
+    <div class="container">
         <div class="row">
-          <div class="col-lg-12">
-            <img class="img-responsive" src="img/hplogo.png" alt="">
-          </div>
+            <div class="col-lg-12">
+                <img class="img-responsive" src="img/hplogo.png" alt="">
+            </div>
         </div>
-      </div>
-    </header>
+    </div>
+</header>
 
 <body id="page-top" class="index">
   <!--START OF ADMIN -->          
@@ -57,9 +54,9 @@
       @endif
     </div>
     <!--SEARCH-->
-    <input type="search" name="ApplicantSearch">
+    <!--<input type="search" name="ApplicantSearch">
     <button id="BtnSubmitSearch" class="btn btn-success btn-sm">Search</button>
-    <!--END SEARCH -->
+    END SEARCH -->
 
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#applicant">APPLICANTS</a></li>
@@ -74,13 +71,13 @@
         <h4>APPLICANTS</h4>
         <div class="row">
           <div class="col-lg-12">
-            <table id="applicantTable" class="table table-hover tablesorter">
+            <table id="applicantTable" class="table table-hover table-striped table-bordered">
               <thead>
                 <tr>
                   <th>#</th>
                   <th class="header">Applicant ID</th>
-                  <th class="header">Applying Position</th>
                   <th class="header">Name</th>
+                  <th class="header">Applying Position</th>
                 </tr>
               </thead>
               <tbody>
@@ -92,36 +89,13 @@
                     <tr>
                         <td><?php echo $counter++; ?></td>
                         <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
-                        <td>{{ $applicant->position->name}}</td>
                         <td>{{ $applicant->fname." ".$applicant->lname}}</td>
+                        <td>{{ $applicant->position->name}}</td>
                     </tr>
                   @endif
                 @endforeach
               </tbody>
             </table>
-            <div id="pager" class="pager">
-              <form>
-                <button type="button" class="btn btn-default btn-xs first">
-                  <span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-xs prev">
-                  <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-xs next">
-                  <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-xs last">
-                  <span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span>
-                </button>
-                <select class="pagesize">
-                  <option selected="selected" value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="40">40</option>
-                </select>
-              </form>
-              <br /><br />
-            </div>
           </div>
         </div>
       </div>
@@ -130,13 +104,13 @@
         <h4>EMPLOYED</h4>
         <div class="row">
           <div class="col-lg-12">
-            <table class="table table-hover">
+            <table id="employedTable" class="table table-hover">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Applicant ID</th>
-                  <th>Applying Position</th>
                   <th>Name</th>
+                  <th>Applying Position</th>
                 </tr>
               </thead>
               <tbody>
@@ -148,8 +122,8 @@
                     <tr>
                         <td><?php echo $counter++; ?></td>
                         <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
-                        <td>{{ $applicant->position->name}}</td>
                         <td>{{ $applicant->fname." ".$applicant->lname}}</td>
+                        <td>{{ $applicant->position->name}}</td>
                     </tr>
                   @endif
                 @endforeach
@@ -163,13 +137,13 @@
         <h4>REJECTED</h4>
         <div class="row">
           <div class="col-lg-12">
-            <table class="table table-hover">
+            <table id="rejectedTable" class="table table-hover">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Applicant ID</th>
-                  <th>Applying Position</th>
                   <th>Name</th>
+                  <th>Applying Position</th>
                 </tr>
               </thead>
               <tbody>
@@ -181,8 +155,8 @@
                     <tr>
                         <td><?php echo $counter++; ?></td>
                         <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
-                        <td>{{ $applicant->position->name}}</td>
                         <td>{{ $applicant->fname." ".$applicant->lname}}</td>
+                        <td>{{ $applicant->position->name}}</td>
                     </tr>
                   @endif
                 @endforeach
@@ -196,13 +170,13 @@
         <h4>END OF CONTRACT</h4>
         <div class="row">
           <div class="col-lg-12">
-            <table class="table table-hover">
+            <table id="endOfContractTable" class="table table-hover">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Applicant ID</th>
-                  <th>Applying Position</th>
                   <th>Name</th>
+                  <th>Applying Position</th>
                 </tr>
               </thead>
               <tbody>
@@ -214,8 +188,8 @@
                     <tr>
                         <td><?php echo $counter++; ?></td>
                         <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
-                        <td>{{ $applicant->position->name}}</td>
                         <td>{{ $applicant->fname." ".$applicant->lname}}</td>
+                        <td>{{ $applicant->position->name}}</td>
                     </tr>
                   @endif
                 @endforeach
@@ -229,13 +203,13 @@
         <h4>RESIGNED</h4>
         <div class="row">
           <div class="col-lg-12">
-            <table class="table table-hover">
+            <table id="resignedTable" class="table table-hover">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Applicant ID</th>
-                  <th>Applying Position</th>
                   <th>Name</th>
+                  <th>Applying Position</th>
                 </tr>
               </thead>
               <tbody>
@@ -247,8 +221,8 @@
                     <tr>
                         <td><?php echo $counter++; ?></td>
                         <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
-                        <td>{{ $applicant->position->name}}</td>
                         <td>{{ $applicant->fname." ".$applicant->lname}}</td>
+                        <td>{{ $applicant->position->name}}</td>
                     </tr>
                   @endif
                 @endforeach
@@ -298,32 +272,24 @@
   <script src="js/jquery-1.9.1.min.js"></script>
   <script src="js/bootstrap-datepicker.js"></script>
 
-  <script src="js/tablesorter/jquery-latest.js/"></script>
-  <script src="js/tablesorter/jquery.tablesorter.js"></script>
-  <script src="js/tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="js/alert-message.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"/></script>
+
   <script>
-    $(function(){
-      $("#applicantTable") 
-      .tablesorter() 
-      .tablesorterPager({container: $("#pager")}); 
+    $(document).ready(function(){
+      $('#applicantTable').DataTable({
+        "aoColumnDefs": [ 
+          { "bSortable": false, "aTargets": [ 0 ] }
+        ]
+      });
+      $('#employedTable').DataTable();
+      $('#rejectedTable').DataTable();
+      $('#endOfContractTable').DataTable();
+      $('#resignedTable').DataTable();
     });
   </script>
-  
-  <!--<script type="text/javascript">
-    // When the document is ready
-    $(document).ready(function () {
-        
-        $('.date').datepicker({
-            weekStart: 1,
-        });
-        
-        $('.year').datepicker({
-            format: "mm-yyyy",
-            viewMode: "months", 
-            minViewMode: "months"
-        });
-    });
-  </script>-->
 </body>
 
 </html>
