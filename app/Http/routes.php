@@ -18,11 +18,8 @@ Route::get('/', "FormController@index");
 
 Route::resource('admin', 'AdminController');
 Route::resource('form', 'FormController');
-
-//Route::group(['prefix' => 'admin'], function(){
-	Route::resource('applicants', 'ApplicantController');
-	Route::resource('positions', 'PositionController');
-//});
+Route::resource('applicants', 'ApplicantController');
+Route::resource('positions', 'PositionController');
 
 /*
 * Register Admin routes
