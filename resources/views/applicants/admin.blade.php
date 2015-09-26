@@ -9,21 +9,39 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Applicant Records</title>
+    <title>List of Applicants</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link rel="stylesheet" href="css/datepicker.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/datepicker.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/freelancer.css" rel="stylesheet">
+    <link href="/css/freelancer.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css"/>
+    <style rel="stylesheet" type="text/css">
+      .table-bordered{
+        border: 1px solid #BBBBBB;
+      }
+      table-bordered>thead>tr>th, 
+      .table-bordered>thead>tr>th, 
+      table-bordered>tbody>tr>th, 
+      .table-bordered>tbody>tr>th, 
+      table-bordered>tfoot>tr>th, 
+      .table-bordered>tfoot>tr>th, 
+      table-bordered>thead>tr>td, 
+      .table-bordered>thead>tr>td, 
+      table-bordered>tbody>tr>td, 
+      .table-bordered>tbody>tr>td, 
+      table-bordered>tfoot>tr>td, 
+      .table-bordered>tfoot>tr>td{
+        border: 1px solid #BBBBBB; 
+      }
+    </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,7 +55,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <img class="img-responsive" src="img/hplogo.png" alt="">
+                <img class="img-responsive" src="/img/hplogo.png" alt="">
             </div>
         </div>
     </div>
@@ -70,25 +88,21 @@
       <div id="applicant" class="tab-pane fade in active">
         <h4>APPLICANTS</h4>
         <div class="row">
-          <div class="col-lg-12">
-            <table id="applicantTable" class="table table-hover table-striped table-bordered">
+          <div class="col-lg-12 table-responsive">
+            <table id="applicantTable" class="table table-hover table-bordered table-striped 
+                     dataTable no-footer">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th class="header">Applicant ID</th>
-                  <th class="header">Name</th>
-                  <th class="header">Applying Position</th>
+                  <th>Applicant ID</th>
+                  <th>Name</th>
+                  <th>Applying Position</th>
                 </tr>
               </thead>
               <tbody>
-                <?php 
-                  $counter = 1;
-                ?>
                 @foreach($applicants as $applicant)
                   @if($applicant->status == 0)
                     <tr>
-                        <td><?php echo $counter++; ?></td>
-                        <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+                        <td><a href="{{ URL::action('ApplicantController@edit', $applicant->id)}}">{{$applicant->id}}</a></td>
                         <td>{{ $applicant->fname." ".$applicant->lname}}</td>
                         <td>{{ $applicant->position->name}}</td>
                     </tr>
@@ -103,25 +117,21 @@
       <div id="employed" class="tab-pane fade">
         <h4>EMPLOYED</h4>
         <div class="row">
-          <div class="col-lg-12">
-            <table id="employedTable" class="table table-hover">
+          <div class="col-lg-12 table-responsive">
+            <table id="employedTable" class="table table-bordered table-hover table-striped 
+                     dataTable no-footer">
               <thead>
                 <tr>
-                  <th>#</th>
                   <th>Applicant ID</th>
                   <th>Name</th>
                   <th>Applying Position</th>
                 </tr>
               </thead>
               <tbody>
-                <?php 
-                  $counter = 1;
-                ?>
                 @foreach($applicants as $applicant)
                   @if($applicant->status == 1)
                     <tr>
-                        <td><?php echo $counter++; ?></td>
-                        <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+                        <td><a href="{{ URL::action('ApplicantController@edit', $applicant->id)}}">{{$applicant->id}}</a></td>
                         <td>{{ $applicant->fname." ".$applicant->lname}}</td>
                         <td>{{ $applicant->position->name}}</td>
                     </tr>
@@ -136,25 +146,21 @@
       <div id="resigned" class="tab-pane fade">
         <h4>REJECTED</h4>
         <div class="row">
-          <div class="col-lg-12">
-            <table id="rejectedTable" class="table table-hover">
+          <div class="col-lg-12 table-responsive">
+            <table id="rejectedTable" class="table table-hover table-bordered table-striped 
+                     dataTable no-footer">
               <thead>
                 <tr>
-                  <th>#</th>
                   <th>Applicant ID</th>
                   <th>Name</th>
                   <th>Applying Position</th>
                 </tr>
               </thead>
               <tbody>
-                <?php 
-                  $counter = 1;
-                ?>
                 @foreach($applicants as $applicant)
                   @if($applicant->status == 2)
                     <tr>
-                        <td><?php echo $counter++; ?></td>
-                        <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+                        <td><a href="{{ URL::action('ApplicantController@edit', $applicant->id)}}">{{$applicant->id}}</a></td>
                         <td>{{ $applicant->fname." ".$applicant->lname}}</td>
                         <td>{{ $applicant->position->name}}</td>
                     </tr>
@@ -169,25 +175,21 @@
       <div id="eoc" class="tab-pane fade">
         <h4>END OF CONTRACT</h4>
         <div class="row">
-          <div class="col-lg-12">
-            <table id="endOfContractTable" class="table table-hover">
+          <div class="col-lg-12 table-responsive">
+            <table id="endOfContractTable" class="table table-hover table-bordered table-striped 
+                     dataTable no-footer">
               <thead>
                 <tr>
-                  <th>#</th>
                   <th>Applicant ID</th>
                   <th>Name</th>
                   <th>Applying Position</th>
                 </tr>
               </thead>
               <tbody>
-                <?php 
-                  $counter = 1;
-                ?>
                 @foreach($applicants as $applicant)
                   @if($applicant->status == 3)
                     <tr>
-                        <td><?php echo $counter++; ?></td>
-                        <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+                        <td><a href="{{ URL::action('ApplicantController@edit', $applicant->id)}}">{{$applicant->id}}</a></td>
                         <td>{{ $applicant->fname." ".$applicant->lname}}</td>
                         <td>{{ $applicant->position->name}}</td>
                     </tr>
@@ -202,25 +204,21 @@
       <div id="rejected" class="tab-pane fade">
         <h4>RESIGNED</h4>
         <div class="row">
-          <div class="col-lg-12">
-            <table id="resignedTable" class="table table-hover">
+          <div class="col-lg-12 table-responsive">
+            <table id="resignedTable" class="table table-hover table-bordered table-striped 
+                     dataTable no-footer">
               <thead>
                 <tr>
-                  <th>#</th>
                   <th>Applicant ID</th>
                   <th>Name</th>
                   <th>Applying Position</th>
                 </tr>
               </thead>
               <tbody>
-                <?php 
-                  $counter = 1;
-                ?>
                 @foreach($applicants as $applicant)
                   @if($applicant->status == 4)
                     <tr>
-                        <td><?php echo $counter++; ?></td>
-                        <td><a href="{{ URL::route('admin.edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+                        <td><a href="{{ URL::action('ApplicantController@edit', $applicant->id)}}">{{$applicant->id}}</a></td>
                         <td>{{ $applicant->fname." ".$applicant->lname}}</td>
                         <td>{{ $applicant->position->name}}</td>
                     </tr>
@@ -249,41 +247,32 @@
   <!--END OF ADMIN -->
 
   <!-- jQuery -->
-  <script src="js/jquery.js"></script>
+  <script src="/js/jquery.js"></script>
 
   <!-- Bootstrap Core JavaScript -->
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery-1.9.1.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery-1.9.1.min.js"></script>
 
   <!-- Plugin JavaScript -->
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-  <script src="js/classie.js"></script>
-  <script src="js/cbpAnimatedHeader.js"></script>
-
-  <!-- Contact Form JavaScript -->
-  <script src="js/jqBootstrapValidation.js"></script>
-  <script src="js/contact_me.js"></script>
+  <script src="/js/classie.js"></script>
+  <script src="/js/cbpAnimatedHeader.js"></script>
 
   <!-- Custom Theme JavaScript -->
-  <script src="js/freelancer.js"></script>
+  <script src="/js/freelancer.js"></script>
   
   <!-- Load jQuery and bootstrap datepicker scripts -->
-  <script src="js/jquery-1.9.1.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="/js/jquery-1.9.1.min.js"></script>
+  <script src="/js/bootstrap-datepicker.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="js/alert-message.js"></script>
+  <script src="/js/alert-message.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"/></script>
 
   <script>
     $(document).ready(function(){
-      $('#applicantTable').DataTable({
-        "aoColumnDefs": [ 
-          { "bSortable": false, "aTargets": [ 0 ] }
-        ]
-      });
+      $('#applicantTable').DataTable();
       $('#employedTable').DataTable();
       $('#rejectedTable').DataTable();
       $('#endOfContractTable').DataTable();

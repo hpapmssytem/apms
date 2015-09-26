@@ -7,12 +7,10 @@ use Illuminate\Http\Request;
 use apms\Http\Requests;
 use apms\Http\Controllers\Controller;
 
-use apms\Http\Controllers\Controller\ApplicantController;
-
 use apms\Applicant;
 use Input;
 
-class AdminController extends Controller
+class ApplicantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,16 +19,14 @@ class AdminController extends Controller
      */
     public function index()
     {
-        /*$applicants = Applicant::select(
+        $applicants = Applicant::select(
             'id', 
             'fname', 
             'lname', 
             'position_id',
             'status')->get();
 
-        return view('forms.admin')->with('applicants', $applicants);*/
-
-        return redirect()->route('applicants.index');
+        return view('applicants.admin')->with('applicants', $applicants);
     }
 
     /**
@@ -73,9 +69,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        /*$applicant = Applicant::findOrFail($id);
+        $applicant = Applicant::findOrFail($id);
 
-        return view('forms.view_information')->with('applicant', $applicant);*/
+        return view('applicants.view_information')->with('applicant', $applicant);
     }
 
     /**
@@ -87,12 +83,13 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*$applicant = Applicant::find($id);
+        $applicant = Applicant::find($id);
 
         $applicant->status = Input::get('status');
         $applicant->save();
-        return \Redirect::route('admin.index')
-            ->with('message', 'Applicant has been updated!');*/
+
+        return \Redirect::route('applicants.index')
+            ->with('message', 'Applicant has been updated!');
     }
 
     /**

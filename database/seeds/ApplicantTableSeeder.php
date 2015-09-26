@@ -15,7 +15,7 @@ class ApplicantTableSeeder extends seeder
 
 		//Applicant::truncate();
 
-	    foreach (range(1, 40) as $index) {
+	    foreach (range(1, 10) as $index) {
 	        $applicant = new Applicant(array(
 	            'fname'        => $faker->firstName(),
 	            'mname'        => $faker->lastName(),

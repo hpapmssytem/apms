@@ -13,8 +13,6 @@ $(function() {
     addSchoolDatePicker();
     addWorkDatePicker();
 
-    $('.alert-info').delay(5000).slideUp(700);
-
     /**
     * EUCATIONAL ATTAINMENT
     * @functions
@@ -30,7 +28,7 @@ $(function() {
 
         //add new attainment
         $x.find('.close').html('<a>x</a>');
-        $toAppend = "<hr />"+$x.html();
+        $toAppend = "<div class='col-lg-12'><hr /></div>"+$x.html();
         $("#educContainer").append($toAppend);
         $('#educGroup').unwrap();
 
@@ -47,7 +45,7 @@ $(function() {
         $educToRemove.prev().slideUp(500, function(){
             $educToRemove.prev().remove();
         });
-        $educToRemove.slideUp(500, function(){ 
+        $educToRemove.slideUp(1000, function(){ 
             $educToRemove.remove() 
         });
     });
@@ -67,7 +65,7 @@ $(function() {
 
         //add new work
         $x.find('.close').html('<a>x</a>');
-        $("#workContainer").append("<hr />"+$x.html());
+        $("#workContainer").append("<div class='col-lg-12'><hr /></div>"+$x.html());
         $('#workGroup').unwrap();
 
         $(".work").next().find('.close').html("");
@@ -83,7 +81,7 @@ $(function() {
         $workToRemove.prev().slideUp(500, function(){
             $workToRemove.prev().remove();
         });
-        $workToRemove.slideUp(500, function(){ 
+        $workToRemove.slideUp(1000, function(){ 
             $workToRemove.remove() 
         });
     });

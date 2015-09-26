@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use apms\Http\Requests;
 use apms\Http\Controllers\Controller;
 
-use apms\Http\Controllers\Controller\ApplicantController;
+//requests
+use apms\Http\Requests\PositionRequest;
 
-use apms\Applicant;
-use Input;
+//models
+use apms\Position;
 
-class AdminController extends Controller
+class PositionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,16 +22,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        /*$applicants = Applicant::select(
-            'id', 
-            'fname', 
-            'lname', 
-            'position_id',
-            'status')->get();
+        $positions = Position::all();
 
-        return view('forms.admin')->with('applicants', $applicants);*/
-
-        return redirect()->route('applicants.index');
+        return view('positions.index')->with('positions', $positions);
     }
 
     /**
@@ -40,7 +34,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('positions.create');
     }
 
     /**
@@ -49,9 +43,16 @@ class AdminController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(PositionRequest $request)
     {
-        //
+        $position = Position::create([
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+            'status' => $request->get('status')
+        ]);
+
+        return \Redirect::route('positions.index')
+           ->with('message', 'Position has been created');
     }
 
     /**
@@ -73,9 +74,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        /*$applicant = Applicant::findOrFail($id);
+        $position = Position::findOrFail($id);
 
-        return view('forms.view_information')->with('applicant', $applicant);*/
+        return view('positions.edit')->with('position', $position);
     }
 
     /**
@@ -85,14 +86,19 @@ class AdminController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(PositionRequest $request, $id)
     {
-        /*$applicant = Applicant::find($id);
+        $position = Position::find($id);
 
-        $applicant->status = Input::get('status');
-        $applicant->save();
-        return \Redirect::route('admin.index')
-            ->with('message', 'Applicant has been updated!');*/
+        $position->update([
+            'name'        => $request->get('name'),
+            'description' => $request->get('description'),
+            'status'      => $request->get('status')
+        ]);
+
+        echo $position->status;
+        return \Redirect::route('positions.index')
+           ->with('message', 'Position has been updated');
     }
 
     /**

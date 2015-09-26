@@ -12,7 +12,11 @@
 */
 
 Route::get('/', "FormController@index");
-Route::get('admin', 'AdminController@index');
 
 Route::resource('admin', 'AdminController');
 Route::resource('form', 'FormController');
+
+//Route::group(['prefix' => 'admin'], function(){
+	Route::resource('applicants', 'ApplicantController');
+	Route::resource('positions', 'PositionController');
+//});

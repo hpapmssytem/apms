@@ -26,7 +26,7 @@ class FormController extends Controller
      */
     public function index()
     {
-        $positions = Position::select('id', 'name')->get();
+        $positions = Position::select('id', 'name')->Where('status', '1')->get();
 
         return view('forms.index')->with('positions', $positions);
     }
@@ -143,13 +143,13 @@ class FormController extends Controller
      */
     public function update($id, ApplicationFormRequest $request)
     {
-        echo "HEEEEEEEEEEEERE!";
         $applicant = Applicant::find($id);
 
         $applicant->status = 2;
         $applicant->save();
-        //return \Redirect::route('form.index')
-        //    ->with('message', 'Applicant has been updated!');
+        
+        return \Redirect::route('form.index')
+            ->with('message', 'Applicant has been updated!');
     }
 
     /**

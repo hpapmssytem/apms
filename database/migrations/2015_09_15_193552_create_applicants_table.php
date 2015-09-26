@@ -18,8 +18,7 @@ class CreateApplicantsTable extends Migration
             $table->foreign('position_id')->references('id')
                 ->on('positions')->onDelete('cascade');
             $table->string('fname');
-            $table->string('mname')
-                ->nullable();
+            $table->string('mname')->nullable();
             $table->string('lname');
             $table->integer('age');
             $table->date('birthdate');
