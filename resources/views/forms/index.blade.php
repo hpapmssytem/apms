@@ -52,6 +52,7 @@
         </header>
         <!-- Contact Section -->
             <div class="container">
+                @if( Auth::guest() )
                 <div class="row">
                     @if(Session::has('message'))
                         <div class="alert alert-info">
@@ -248,6 +249,7 @@
                         </form>
                     </div>
                 </div>
+                @endif
             </div>
 
         <!-- Footer -->

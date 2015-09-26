@@ -14,6 +14,12 @@ use Input;
 
 class AdminController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,15 +27,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-        /*$applicants = Applicant::select(
-            'id', 
-            'fname', 
-            'lname', 
-            'position_id',
-            'status')->get();
-
-        return view('forms.admin')->with('applicants', $applicants);*/
-
         return redirect()->route('applicants.index');
     }
 
@@ -73,9 +70,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        /*$applicant = Applicant::findOrFail($id);
-
-        return view('forms.view_information')->with('applicant', $applicant);*/
+        
     }
 
     /**
@@ -87,12 +82,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*$applicant = Applicant::find($id);
-
-        $applicant->status = Input::get('status');
-        $applicant->save();
-        return \Redirect::route('admin.index')
-            ->with('message', 'Applicant has been updated!');*/
+        
     }
 
     /**
