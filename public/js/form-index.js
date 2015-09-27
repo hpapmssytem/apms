@@ -6,7 +6,6 @@ $(function() {
     addProfileDatePicker();
     addSchoolDatePicker();
     addWorkDatePicker();
-    //displayEduc();
 
     /**
     * EUCATIONAL ATTAINMENT
@@ -90,11 +89,6 @@ $(function() {
         });
     });
 
-
-    function displayEduc()
-    {
-        $('#educGroup').show();
-    }
     /**
     * DATEPICKERS
     **/
