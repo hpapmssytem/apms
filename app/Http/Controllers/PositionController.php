@@ -24,11 +24,12 @@ class PositionController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index($status = 0)
     {
         $positions = Position::all();
 
-        return view('positions.index')->with('positions', $positions);
+        return view('positions.index')->with('positions', $positions)
+            ->with('status', $status);
     }
 
     /**

@@ -6,20 +6,20 @@
 
 @section('contents')
     <div class="col-lg-12">
-        <a href="{{ URL::route('applicants.index')}}">← back</a>
+        <a href="{{ URL::route('applicants.index') }}">← back</a>
     </div>
     <div class="col-lg-12">
         {!! Form::model($applicant, array('method' => 'PUT', 'route' => ['applicants.update', $applicant->id], 
             'class' => 'form')) !!}
             <h4>STATUS:</h4>
-            <select name="status" id="AppStatus">
-                <option value="0">APPLICANT</option>
-                <option value="1">EMPLOYED</option>
-                <option value="2">REJECTED</option>
-                <option value="3">END OF CONTRACT</option>
-                <option value="4">RESIGNED</option>
-            </select>
-            <!--<button id="BtnNext" class="btn btn-success btn-md"> SAVE </button>-->
+
+            {!! Form::select('status', 
+                        array('0' => 'Applicant',
+                              '1' => 'Employed',
+                              '2' => 'Rejected',
+                              '3' => 'End Of Contract',
+                              '4' => 'Resigned'), $applicant->status)
+            !!}
             <input type="submit" id="BtnSave" class="btn btn-success btn-md" value="Apply">
         {!! Form::close() !!}
     </div>

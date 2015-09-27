@@ -17,10 +17,9 @@
 
     			<div class="form-group">
     				<h5>Availability</h5>
-    				<select name="status">
-    					<option value="0">Unavailable</option>
-    					<option value="1">Available</option>
-    				</select>
+                    {!! Form::select('status', 
+                        array('0' => 'Unavailable', 
+                              '1' => 'Available'), $position->status); !!}
     			</div>
 
     			<div class="form-group">
