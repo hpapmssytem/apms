@@ -27,11 +27,11 @@
 
 @section('contents') 
 	<div class="row">
-		<div class="col-bg-12">
+		<div class="col-lg-12">
 			@if(Session::has('message'))
-					<div class="alert alert-info">
-							{{ Session::get('message') }}
-					</div>
+				<div class="alert alert-info">
+					{{ Session::get('message') }}
+				</div>
 			@endif
 		</div>
 	</div>
@@ -149,9 +149,9 @@
 							@foreach($applicants as $applicant)
 								@if($applicant->status == 2)
 									<tr>
-											<td><a href="{{ URL::action('ApplicantController@edit', $applicant->id)}}">{{$applicant->id}}</a></td>
-											<td>{{ $applicant->fname." ".$applicant->lname}}</td>
-											<td>{{ $applicant->position->name}}</td>
+										<td><a href="{{ URL::action('ApplicantController@edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+										<td>{{ $applicant->fname." ".$applicant->lname}}</td>
+										<td>{{ $applicant->position->name}}</td>
 									</tr>
 								@endif
 							@endforeach
@@ -178,9 +178,9 @@
 							@foreach($applicants as $applicant)
 								@if($applicant->status == 3)
 									<tr>
-											<td><a href="{{ URL::action('ApplicantController@edit', $applicant->id)}}">{{$applicant->id}}</a></td>
-											<td>{{ $applicant->fname." ".$applicant->lname}}</td>
-											<td>{{ $applicant->position->name}}</td>
+										<td><a href="{{ URL::action('ApplicantController@edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+										<td>{{ $applicant->fname." ".$applicant->lname}}</td>
+										<td>{{ $applicant->position->name}}</td>
 									</tr>
 								@endif
 							@endforeach
@@ -207,9 +207,9 @@
 							@foreach($applicants as $applicant)
 								@if($applicant->status == 4)
 									<tr>
-											<td><a href="{{ URL::action('ApplicantController@edit', $applicant->id)}}">{{$applicant->id}}</a></td>
-											<td>{{ $applicant->fname." ".$applicant->lname}}</td>
-											<td>{{ $applicant->position->name}}</td>
+										<td><a href="{{ URL::action('ApplicantController@edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+										<td>{{ $applicant->fname." ".$applicant->lname}}</td>
+										<td>{{ $applicant->position->name}}</td>
 									</tr>
 								@endif
 							@endforeach
