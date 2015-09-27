@@ -1,17 +1,12 @@
 $(function() {
-
-    /*$("#educContainer").bind("append", function() {
-        $(this).fadeIn(1000);
-    });*/
-
     /**
-    * INITIALIZATIONS
+    * INITIALIZATION
     * Add date pickers
-    * CREATE message if existing
     **/
     addProfileDatePicker();
     addSchoolDatePicker();
     addWorkDatePicker();
+    //displayEduc();
 
     /**
     * EUCATIONAL ATTAINMENT
@@ -28,9 +23,13 @@ $(function() {
 
         //add new attainment
         $x.find('.close').html('<a>x</a>');
-        $toAppend = "<div class='col-lg-12'><hr /></div>"+$x.html();
-        $("#educContainer").append($toAppend);
+        $newSchool = "<div class='col-lg-12'><hr ></div>"+$x.html();
+        $("#educContainer").append($newSchool);
         $('#educGroup').unwrap();
+
+        $('#educContainer').find('#educGroup:last-child')
+            .hide()
+            .slideDown(1000);
 
         $(".educ").next().find('.close').html("");
         addSchoolDatePicker();
@@ -60,13 +59,18 @@ $(function() {
         //prevent add button from sending data
         $e.preventDefault();
 
-        //get work group attainment form
+        //get educational group attainment form
         $x = $('#workGroup').wrap('<p/>').parent();
 
-        //add new work
+        //add new attainment
         $x.find('.close').html('<a>x</a>');
-        $("#workContainer").append("<div class='col-lg-12'><hr /></div>"+$x.html());
+        $newWork = "<div class='col-lg-12'><hr ></div>"+$x.html();
+        $("#workContainer").append($newWork);
         $('#workGroup').unwrap();
+
+        $('#workContainer').find('#workGroup:last-child')
+            .hide()
+            .slideDown(1000);
 
         $(".work").next().find('.close').html("");
         addWorkDatePicker();
@@ -86,6 +90,11 @@ $(function() {
         });
     });
 
+
+    function displayEduc()
+    {
+        $('#educGroup').show();
+    }
     /**
     * DATEPICKERS
     **/
