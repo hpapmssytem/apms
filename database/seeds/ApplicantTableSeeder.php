@@ -15,7 +15,7 @@ class ApplicantTableSeeder extends seeder
 
 		//Applicant::truncate();
 
-	    foreach (range(1, 50) as $index) {
+	    foreach (range(1, 24) as $index) {
 	        $applicant = new Applicant(array(
 	            'fname'        => $faker->firstName(),
 	            'mname'        => $faker->lastName(),
@@ -26,7 +26,7 @@ class ApplicantTableSeeder extends seeder
 	            'address'      => $faker->address(),
 	            'contact_num'  => "0910".$faker->shuffle("9067831"),
 	            'email_add'    => $faker->email(),
-	            'status'       => 0,
+	            'status'       => 2,
 	            'position_id'  => mt_rand(1, 10)
 	        ));
 

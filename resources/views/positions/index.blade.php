@@ -35,8 +35,11 @@
     <div class="row">
         <div class="col-lg-12">
             @if(Session::has('message'))
-                <div class="alert alert-info">
+                <div class="alert alert-info alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
                     {{ Session::get('message') }}
+                    {{ Session::forget('message') }}
                 </div>
             @endif
         </div>
@@ -149,7 +152,7 @@
     <div class="row">
         <div class="col-md-6">
             <a href="{{ URL::route('positions.create')}}">
-                <input type="button" value="Add" id="BtnSave" class="btn btn-primary btn-default">
+                <input type="button" value="Add" id="BtnSave" class="btn btn-primary btn-lg">
             </a>
             <br /><br />
         </div>

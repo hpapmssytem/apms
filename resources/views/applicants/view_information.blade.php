@@ -6,7 +6,7 @@
 
 @section('contents')
     <div class="col-lg-12">
-        <a href="{{ URL::route('applicants.index') }}">← back</a>
+        <a href="{{ URL::route('applicants.index') }}"><strong>← BACK</strong></a>
     </div>
     <div class="col-lg-12">
         {!! Form::model($applicant, array('method' => 'PUT', 'route' => ['applicants.update', $applicant->id], 
@@ -103,7 +103,13 @@
                 </div>
                 <div class="col-md-6">
                     <p>WORK STARTED: {{ $workXp->date_started }}</p>
-                    <p>WORK ENDED: {{ $workXp->date_ended }}</p>
+                    <p>WORK ENDED: 
+                        @if($workXp->date_ended != null)
+                            {{ $workXp->date_ended }}
+                        @else
+                            Present
+                        @endif
+                    </p>
                 </div>
                 <div class="col-md-9">
                     <p>DESCRIPTION OF TASKS: <br/>{{ $workXp->task_description }}</p>

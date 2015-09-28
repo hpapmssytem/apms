@@ -7,7 +7,7 @@
 @section('contents')
     <div class="row">
         <div class="col-lg-12">
-            <a href="{{ URL::route('positions.index')}}">← back</a>
+            <a href="{{ URL::route('positions.index')}}"><strong>← BACK</strong></a>
         </div>
     </div>
 	<div class="row">
