@@ -40,7 +40,7 @@ $(function() {
 
         $educToRemove = $(this).closest('#educGroup');
         $(this).remove();
-        $educToRemove.prev().slideUp(500, function(){
+        $educToRemove.prev().slideUp(1000, function(){
             $educToRemove.prev().remove();
         });
         $educToRemove.slideUp(1000, function(){ 
@@ -81,7 +81,7 @@ $(function() {
 
         $workToRemove = $(this).closest('#workGroup');
         $(this).remove();
-        $workToRemove.prev().slideUp(500, function(){
+        $workToRemove.prev().slideUp(1000, function(){
             $workToRemove.prev().remove();
         });
         $workToRemove.slideUp(1000, function(){ 
