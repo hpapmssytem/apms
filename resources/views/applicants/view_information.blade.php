@@ -6,7 +6,11 @@
 
 @section('contents')
     <div class="col-lg-12">
-        <a href="{{ URL::route('applicants.index') }}"><strong>← BACK</strong></a>
+        @if( Input::get('from') == 'position')
+            <a href="{{ URL::route('positions.edit', Input::get('value') ) }}"><strong>← BACK</strong></a>
+        @else
+            <a href="{{ URL::route('applicants.index') }}"><strong>← BACK</strong></a>
+        @endif
     </div>
     <div class="col-lg-12">
         {!! Form::model($applicant, array('method' => 'PUT', 'route' => ['applicants.update', $applicant->id], 

@@ -94,7 +94,7 @@
 							@foreach($applicants as $applicant)
 								@if($applicant->status == 0)
 									<tr>
-										<td><a href="{{ URL::action('ApplicantController@edit', $applicant->id)}}">{{$applicant->id}}</a></td>
+										<td><a href="{{ URL::action('ApplicantController@edit', [$applicant->id, 'from=applicants'])}}">{{$applicant->id}}</a></td>
 										<td>{{ $applicant->fname." ".$applicant->lname}}</td>
 										<td>{{ $applicant->position->name}}</td>
 									</tr>
