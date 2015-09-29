@@ -111,7 +111,7 @@
                         </div> 
                         <div class="control-group">
                             <h5>Contact Number</h5>
-                                {!! Form::text('contact_num', null, array('required', 'class'=>'form-control',
+                                {!! Form::number('contact_num', null, array('required', 'class'=>'form-control',
                                     'placeholder'=>'ex. 0910xxxxxxx')) !!}
                             <p class="help-block text-danger"></p>
                         </div> 
@@ -194,7 +194,7 @@
                             </div>
                             <div class="control-group">
                                 <h5>Ended</h5>
-                                {!! Form::text('date_ended[]', null, array('class'=>'span2 year-month form-control')) !!}
+                                {!! Form::text('date_ended[]', null, array('required', 'class'=>'span2 year-month form-control')) !!}
                                 <span class="add-on"><i class="icon-th"></i></span>
                             </div>
                         </div>
