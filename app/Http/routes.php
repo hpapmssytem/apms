@@ -20,6 +20,7 @@ Route::resource('admin', 'AdminController');
 Route::resource('form', 'FormController');
 Route::resource('applicants', 'ApplicantController');
 Route::resource('positions', 'PositionController');
+Route::resource('links', 'LinkController');
 
 /*
 * Register Admin routes
