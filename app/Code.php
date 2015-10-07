@@ -4,14 +4,14 @@ namespace apms;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Codes extends Model
+class Code extends Model
 {
 	protected $fillable = [
 		'code',
 		'email_add',
 		'applicant_id',
 		'status'
-	]
+	];
 
     public function applicant()
     {

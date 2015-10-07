@@ -34,6 +34,8 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 
+Route::post('checkcode',
+	['as' => 'checkcode', 'uses' => 'FormController@checkCode']);
 /*
 * Logout Admin route
 */

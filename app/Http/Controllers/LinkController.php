@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use apms\Http\Requests;
 use apms\Http\Controllers\Controller;
 
+use apms\Code;
 use Input;
 
 class LinkController extends Controller
@@ -42,9 +43,24 @@ class LinkController extends Controller
      */
     public function store(Request $request)
     {
+        $email = Input::get('email');
+
+        $rules = array('code' => 'unique:codes, code');
+        
+        do
+        {
+           $code = $this->generateCode();
+        }while(Code::where('code', '=', $code)->exists());
+
+        $newCode = Code::create([
+            'code' => $code,
+            'email_add' => $email
+        ]);
+        
         \Mail::send('send-link.contact',
             array(
-                'email' => Input::get('email')
+                'email' => $email,
+                'code' => $code
             ), function($message)
             {
                 $message->from('hpapms@gmail.com');
@@ -100,5 +116,22 @@ class LinkController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function generateCode() 
+    {
+        //variable that holds the base alphanumeric characters
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+
+        $length = mt_rand(8, 12);
+
+        $code = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $code .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $code;
     }
 }

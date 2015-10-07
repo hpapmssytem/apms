@@ -14,8 +14,10 @@ use apms\Applicant;
 use apms\Position;
 use apms\EducXp;
 use apms\WorkXp;
+use apms\Code;
 
 use Input;
+
 
 class FormController extends Controller
 {
@@ -106,6 +108,13 @@ class FormController extends Controller
             $applicant->workXps()->save($workxp);
         }
 
+        $code = Code::find(session('newCode')[0]['id']);
+        $code->update([
+            'status' => 1
+        ]);
+        $applicant->code()->save($code);
+        session()->forget('newCode');
+
         return \Redirect::route('form.index')
             ->with('message', 'Your application has been created!');
     }
@@ -161,5 +170,24 @@ class FormController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function checkCode()
+    {
+        $code = Input::get('code');
+        echo $code."<br>";
+
+        $newCode = Code::select('id', 'code', 'email_add')->where('code', $code)
+            ->where('status', 0)
+            ->get();
+
+        if($newCode->count() >= 1)
+        {
+            session(['newCode' => $newCode]);
+            return \Redirect::route('form.index');
+        }
+
+        return \Redirect::route('form.index')
+            ->with('alertMessage', 'The code you entered is either invalid or does not exist!');
     }
 }
