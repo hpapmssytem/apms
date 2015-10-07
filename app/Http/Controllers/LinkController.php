@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use apms\Http\Requests;
 use apms\Http\Controllers\Controller;
 
+use Input;
+
 class LinkController extends Controller
 {
     public function __construct()
@@ -40,7 +42,19 @@ class LinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        \Mail::send('send-link.contact',
+            array(
+                'email' => Input::get('email')
+            ), function($message)
+            {
+                $message->from('hpapms@gmail.com');
+                $message->to(Input::get('email'), "Admin")
+                    ->subject('You are referenced');
+            }
+        );
+
+        return \Redirect::route('links.index')
+            ->with('message', "You've successfully invited an applicant!");
     }
 
     /**

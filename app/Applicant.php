@@ -34,4 +34,9 @@ class Applicant extends Model
     {
     	return $this->hasMany('apms\WorkXp');
     }
+
+    public function code()
+    {
+        return $this->hasOne('apms\Code');
+    }
 }
