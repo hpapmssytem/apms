@@ -40,3 +40,8 @@ Route::post('checkcode',
 * Logout Admin route
 */
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+Route::get('register/verify/{confirmationCode}', [
+    'as' => 'confirmation_path',
+    'uses' => 'RegistrationController@confirm'
+]);

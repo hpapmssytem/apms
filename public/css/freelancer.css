@@ -352,6 +352,10 @@ footer .footer-col {
 
 footer .footer-below {
     background-color: #ffb860;
+    position: relative;
+    left:0px;
+    bottom:0px;
+    width:100%;
 }
 
 .btn-social {

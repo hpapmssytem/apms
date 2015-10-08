@@ -14,6 +14,7 @@ class LinkController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('confirm');
     }
     /**
      * Display a listing of the resource.
@@ -23,6 +24,7 @@ class LinkController extends Controller
     public function index()
     {
         return view('send-link.index');
+        $this->middleware('confirm');
     }
 
     /**

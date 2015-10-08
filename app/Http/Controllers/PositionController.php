@@ -18,6 +18,7 @@ class PositionController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('confirm');
     }
     /**
      * Display a listing of the resource.
