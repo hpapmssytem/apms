@@ -7,6 +7,10 @@
         select.form-control{
             width:150px;
         }
+        .centred{
+            margin: 0 auto;
+            width: 50%;
+        }
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -43,6 +47,7 @@
 
     <div class="row">
         @if(Session::has('newCode'))
+        {{ Session::forget('newCode') }}
             <div class="col-lg-12">
                 <form method='post' action='{{ URL::route("form.store") }}'>
                     <?php echo Form::token() ?>
@@ -224,8 +229,9 @@
                 </form>
             </div>
         @else
-            {!! Form::open(array('route' => 'checkcode', 'class' => 'form code-form center')) !!}    
-                <div class="col-md-4">
+            {!! Form::open(array('route' => 'checkcode', 'class' => 'form code-form center')) !!}
+            <div class="centred">
+                <div class="col-lg-12 text-center">
                     <div class="form-group">
                         <h5>Enter valid code to apply</h5>
                         {!! Form::text('code', null,
@@ -234,9 +240,10 @@
                         !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::submit('Enter', array('class'=>'btn btn-success btn-md')) !!}
+                        {!! Form::submit('Enter', array('class'=>'btn btn-success btn-lg')) !!}
                     </div>
                 </div>
+            </div>
             {!! Form::close() !!}
         @endif
     </div>

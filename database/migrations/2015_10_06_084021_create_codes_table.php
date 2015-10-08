@@ -15,7 +15,7 @@ class CreateCodesTable extends Migration
         Schema::create('codes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code');
-            $table->string('email_add')->unique();
+            $table->string('email_add');
             $table->integer('applicant_id')->unsigned()->nullable();
             $table->foreign('applicant_id')->references('id')
                 ->on('applicants')->onDelete('cascade');

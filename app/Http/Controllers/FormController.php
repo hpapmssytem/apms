@@ -51,6 +51,12 @@ class FormController extends Controller
      */
     public function store(ApplicationFormRequest $request)
     {
+        if(!session()->has('newCode'))
+        {
+            return \Redirect::route('form.index')
+                ->with('alertMessage', 'The code is expired!');
+        }
+        
         //save applicant main profile
         $applicant = new Applicant(array(
             'fname'         => $request->get('fname'),

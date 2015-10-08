@@ -62,7 +62,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ URL::route('applicants.index') }}">Applicants <span class="sr-only">(current)</span></a></li>
                     <li class="active"><a href="{{ URL::route('positions.index') }}">Positions</a></li>
-                    <li><a href="{{ URL::route('links.index') }}">Send Email</a></li>
+                    <li><a href="{{ URL::route('links.index') }}">Invite</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{ URL::to('auth/logout') }}">Logout</a></li>

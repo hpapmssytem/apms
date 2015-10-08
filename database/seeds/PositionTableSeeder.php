@@ -11,7 +11,7 @@ class PositionTableSeeder extends seeder
 	{
 		$faker = \Faker\Factory::create();
 
-		foreach(range(1, 8) as $index)
+		foreach(range(1, 10) as $index)
 		{
 			Position::create([
 				'name' 			=> $faker->text(10),
