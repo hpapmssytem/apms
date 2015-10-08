@@ -14,14 +14,14 @@ class RegistrationController extends Controller
     {
         if( ! $confirmation_code)
         {
-            //throw new \InvalidConfirmationCodeException;
+            return redirect()->to('auth/login')->with('alertMessage', 'The link is invaid');
         }
 
         $user = User::where('confirmation_code', $confirmation_code)->first();
 
         if ( ! $user)
         {
-            //throw new \InvalidConfirmationCodeException;
+            return redirect()->to('auth/login')->with('alertMessage', 'No such user exists!');
         }
 
         $user->confirmed = 1;

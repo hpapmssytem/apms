@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('styles')
-		<title>APMS | Sign-in</title>
+	<title>APMS | Sign-in</title>
 @endsection
 
 @section('contents')
@@ -15,9 +15,17 @@
                     {{ Session::forget('message') }}
                 </div>
             @endif
+            @if(Session::has('alertMessage'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    {{ Session::get('alertMessage') }}
+                    {{ Session::forget('alertMessage') }}
+                </div>
+            @endif
         </div>
     </div>
-	<div class="col-md-6">
+	<div class="col-lg-12">
         {!! Form::open(array('url' => '/auth/login', 'class' => 'form')) !!}
 
         <h1>Admin Sign-in</h1>

@@ -23,8 +23,7 @@ class LinkController extends Controller
      */
     public function index()
     {
-        return view('send-link.index');
-        $this->middleware('confirm');
+        return view('emails.send-link');
     }
 
     /**
@@ -59,7 +58,7 @@ class LinkController extends Controller
             'email_add' => $email
         ]);
         
-        \Mail::send('send-link.contact',
+        \Mail::send('emails.contact',
             array(
                 'email' => $email,
                 'code' => $code

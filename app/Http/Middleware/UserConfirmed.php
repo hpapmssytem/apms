@@ -5,6 +5,8 @@ namespace apms\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
+use apms\User;
+
 class UserConfirmed {
 
     /**
@@ -35,7 +37,7 @@ class UserConfirmed {
     public function handle($request, Closure $next)
     {
         $user = $this->auth->getUser();
-        $confirmed = $user->confirmed;
+        $confirmed = $user['confirmed'];
 
         if (isset($confirmed) && $confirmed == "0")
         {
@@ -46,10 +48,14 @@ class UserConfirmed {
             {
                 // generate a confirmation code
                 $key = \Config::get('app.key');
-                $confirmation_code = hash_hmac('sha256', str_random(40), $key);
+                
+                do{
+                    $confirmation_code = hash_hmac('sha256', str_random(40), $key);
+                }while(User::where('confirmation_code', $confirmation_code)->exists());
+                
                 $user->confirmation_code = $confirmation_code;
                 $user->save();
-                \Mail::send('send-link.activate', 
+                \Mail::send('emails.activate', 
                     ['token' => $confirmation_code, 'name' => $user->name], 
                     function($message) use ($user){
                     $message->to("hpapms@gmail.com", $user->name)
