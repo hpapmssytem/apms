@@ -58,7 +58,7 @@ class UserConfirmed {
             }
 
             \Session::put('alertMessage', 'Your email needs confirmation from admin!');
-            return redirect()->guest('/auth/logout');
+            return redirect()->guest('auth/logout');
         }
         return $next($request);
     }

@@ -5,6 +5,18 @@
 @endsection
 
 @section('contents')
+    <div class="row">
+        <div class="col-lg-12">
+            @if(Session::has('message'))
+                <div class="alert alert-info alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    {{ Session::get('message') }}
+                    {{ Session::forget('message') }}
+                </div>
+            @endif
+        </div>
+    </div>
 	<div class="col-md-6">
         {!! Form::open(array('url' => '/auth/login', 'class' => 'form')) !!}
 

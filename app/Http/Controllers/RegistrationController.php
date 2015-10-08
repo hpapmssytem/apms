@@ -28,6 +28,6 @@ class RegistrationController extends Controller
         $user->confirmation_code = null;
         $user->save();
 
-        return \Redirect::route('auth/login')->with('message', 'User is validated!');
+        return redirect()->to('auth/login')->with('message', 'User is validated!');
     }
 }
