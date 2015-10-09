@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         //DB::table('applicants')->delete();
-        $this->call('ApplicantTableSeeder');
+        $this->call('PositionTableSeeder');
 
         Model::reguard();
     }

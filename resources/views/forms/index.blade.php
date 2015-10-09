@@ -47,7 +47,6 @@
 
     <div class="row">
         @if(Session::has('newCode'))
-        {{ Session::forget('newCode') }}
             <div class="col-lg-12">
                 <form method='post' action='{{ URL::route("form.store") }}'>
                     <?php echo Form::token() ?>

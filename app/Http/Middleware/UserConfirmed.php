@@ -58,8 +58,9 @@ class UserConfirmed {
                 \Mail::send('emails.activate', 
                     ['token' => $confirmation_code, 'name' => $user->name], 
                     function($message) use ($user){
-                    $message->to("hpapms@gmail.com", $user->name)
-                            ->subject('Account Verification');
+                        $message->from($user->email);
+                        $message->to("hpapms@gmail.com", $user->name)
+                                ->subject('Account Verification');
                 });
             }
 

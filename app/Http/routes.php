@@ -41,6 +41,9 @@ Route::post('checkcode',
 */
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
+/*
+* Email verification route for users
+*/
 Route::get('register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
     'uses' => 'RegistrationController@confirm'
