@@ -6,7 +6,7 @@
 <div>
     Thank you for registering to APMS. You can login to your account
     using your email address and password. Please make your credentials
-    discrete.
+    discreet.
     <br /><br />
     God Bless! 
 </div>

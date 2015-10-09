@@ -25,7 +25,7 @@
             @endif
         </div>
     </div>
-	<div class="col-lg-12">
+	<div class="col-md-6 col-md-offset-3">
         {!! Form::open(array('url' => '/auth/login', 'class' => 'form')) !!}
 
         <h1>Admin Sign-in</h1>
