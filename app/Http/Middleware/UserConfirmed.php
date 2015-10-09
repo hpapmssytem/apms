@@ -59,7 +59,7 @@ class UserConfirmed {
                     ['token' => $confirmation_code, 'name' => $user->name], 
                     function($message) use ($user){
                         $message->from($user->email);
-                        $message->to("hpapms@gmail.com", $user->name)
+                        $message->to("hpapms@gmail.com", "Admin")
                                 ->subject('Account Verification');
                 });
             }

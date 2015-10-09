@@ -28,6 +28,13 @@ class RegistrationController extends Controller
         $user->confirmation_code = null;
         $user->save();
 
+        \Mail::send('emails.confirm-user', 
+            ['name' => $user->name], 
+            function($message) use ($user){
+                $message->to($user->email, $user->name)
+                        ->subject('Account Verification');
+        });
+
         return redirect()->to('auth/login')->with('message', 'User is validated!');
     }
 }

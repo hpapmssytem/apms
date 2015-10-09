@@ -28,14 +28,6 @@ class FormController extends Controller
      */
     public function index()
     {
-        if(\Auth::check())
-        {
-            if(\Auth::user()->confirmed == 0)
-            {
-                return \Redirect::route('admin.index');
-            }
-        }
-
         $positions = Position::select('id', 'name')->Where('status', '1')->get();
 
         return view('forms.index')->with('positions', $positions);

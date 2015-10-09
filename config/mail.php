@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => '', 'name' => ''],
+    'from' => ['address' => 'hpapms@gmail.com', 'name' => 'APMS System Administrator'],
 
     /*
     |--------------------------------------------------------------------------
